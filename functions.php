@@ -14,19 +14,57 @@ function scriptsAndStyles(){
 // load scripts & styles
 add_action("wp_enqueue_scripts", "scriptsAndStyles");
 
-
 // Menu
 add_theme_support( 'menus' );
+
 function get_menu(){
     return wp_get_nav_menu_items('menu');
 }
+
 add_action( 'rest_api_init', function () {
-        register_rest_route( 'wp/v2', '/menu', array(
+        register_rest_route( 'api/v1', '/menu', array(
         'methods' => 'GET',
         'callback' => 'get_menu',
     ) );
 });
 
+// get Products by Category
+function get_products_by_category($req){
+    $category_name = urldecode($req->get_param('category'));
+
+    $category = get_term_by('slug', $category_name, 'product_cat', 'ARRAY_A'); 
+    $category_id = $category["term_id"];
+
+    // get products
+    $args = array(
+        'post_type'             => 'product',
+        'post_status'           => 'publish',
+        'ignore_sticky_posts'   => 1,
+        'posts_per_page'        => '12',
+        'tax_query'             => array(
+            array(
+                'taxonomy'      => 'product_cat',
+                'field' => 'term_id',
+                'terms'         => $category_id,
+                'operator'      => 'IN'
+            ),
+            array(
+                'taxonomy'      => 'product_visibility',
+                'field'         => 'slug',
+                'terms'         => 'exclude-from-catalog',
+                'operator'      => 'NOT IN'
+            )
+        )
+    );    
+    $products = new WP_Query($args);
+    return rest_ensure_response($products->posts);
+}
+add_action( 'rest_api_init', function () {
+        register_rest_route( 'api/v1', '/products/(?P<category>\S+)', array(
+        'methods' => 'GET',
+        'callback' => 'get_products_by_category',
+    ) );
+});
 
 // for WP Customizer
 add_action('customize_register', function($customizer){
@@ -64,9 +102,5 @@ add_action('customize_register', function($customizer){
             )
         )
     );
-    
 });
-
-
-
 ?>
