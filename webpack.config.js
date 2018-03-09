@@ -13,7 +13,7 @@ module.exports = {
                 loader: "babel-loader",
                 exclude: [/node_modules/, /public/],
                 options: {
-                    presets: ['stage-0', 'es2015', 'react']
+                    presets: ['stage-0', 'es2015', 'es2017', 'react']
                 }
             },
             {

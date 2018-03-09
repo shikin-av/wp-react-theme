@@ -67,3 +67,7 @@ img#logo {
 .slick-prev:before{
     content: '<' !important;
 }*/
+.slick-slider{
+    box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.15);
+}

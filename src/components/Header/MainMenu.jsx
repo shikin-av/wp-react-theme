@@ -18,7 +18,7 @@ export default class MainMenu extends React.Component {
             })
         }else{
             console.log('MainMenu componentWillMount: Fetch')
-            return fetch('/wp-json/wp/v2/menu')
+            return fetch('/wp-json/api/v1/menu')
             .then((res) => res.json())
             .then(items => {
                 this.setState({
