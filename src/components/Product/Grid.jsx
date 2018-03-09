@@ -20,9 +20,9 @@ class Grid extends React.Component {
 
     renderProduct(product, index){      //TODO
         return (
-            <div className='col-sm-4 col-md-4 col-lg-4' key={index}>
+            <div className='col-sm-3 col-md-3 col-lg-3' key={index}>
                 <div className='thumbnail'>
-                    <img src={product} />
+                    <img src={product.thumbnail} />
                 </div>
             </div>
         )
@@ -34,14 +34,16 @@ class Grid extends React.Component {
             count,
             products
         } = this.props
-
-        return(
-            <div>
-                {   0
-                    //products.map((product, index) => this.renderProduct(product, index)) 
-                }
-            </div>
-        )
+        console.log(this.props.products)
+        if(products.length){
+            return(
+                <div className='row'>
+                    { products.map((product, index) => this.renderProduct(product, index)) }
+                </div>
+            )
+        }else{
+            return null
+        }
     }
 }
 
@@ -53,4 +55,4 @@ const mapDispatchToProps = {
     fetchProductsByCategory
 }
 
-export default connect(null, mapDispatchToProps)(Grid)
+export default connect(mapStateToProps, mapDispatchToProps)(Grid)

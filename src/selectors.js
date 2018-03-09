@@ -3,7 +3,7 @@
 }*/
 
 export const getProducts = state => {
-    //const currentPageProducts = 
+    //const currentPageProducts = state.productsCurrentPage
     //TODO get currentPageProducts from all products on the store
     return state.products
 }
