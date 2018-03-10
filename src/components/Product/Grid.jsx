@@ -20,9 +20,22 @@ class Grid extends React.Component {
 
     renderProduct(product, index){      //TODO
         return (
-            <div className='col-sm-3 col-md-3 col-lg-3' key={index}>
-                <div className='thumbnail'>
-                    <img src={product.thumbnail} />
+            <div className='col-sm-3 col-md-3 col-lg-3 product' key={index}>
+                <div className='product_inner'>
+                    <div className='thumbnail'>
+                        <img src={product.thumbnail} />
+                    </div>
+                    <div className='product_name'>
+                        {product.name}
+                    </div>                    
+                    <div className='buy'>
+                        <div className='product_price'>
+                            <span className='price'>{product.price}</span><span>р</span>
+                        </div>
+                        <div className='product_buy_div'>
+                            <button className='buy_btn'>Заказать</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -32,13 +45,19 @@ class Grid extends React.Component {
         const {
             category,
             count,
-            products
+            products,
+            categoryName
         } = this.props
         console.log(this.props.products)
         if(products.length){
             return(
-                <div className='row'>
-                    { products.map((product, index) => this.renderProduct(product, index)) }
+                <div className='container'>
+                    <div className='row category_name'>
+                        <p>{categoryName}</p>
+                    </div>
+                    <div className='row grid'>
+                        { products.map((product, index) => this.renderProduct(product, index)) }
+                    </div>
                 </div>
             )
         }else{
