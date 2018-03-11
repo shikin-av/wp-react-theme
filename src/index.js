@@ -12,6 +12,7 @@ import 'babel-polyfill'
 import reducers from './reducers'
 import Header from './components/Header/Header.jsx'
 import Main from './components/Main.jsx'
+import Footer from './components/Footer.jsx'
 
 
 const history = createHistory()
@@ -23,6 +24,7 @@ const App = () => (
     <div>
         <Header />
         <Main />
+        <Footer />
     </div>
 )
 

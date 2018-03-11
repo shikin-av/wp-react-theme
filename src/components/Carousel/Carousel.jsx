@@ -53,6 +53,11 @@ export default class Carousel extends React.Component {
                                         src={slide.img} 
                                         alt=""
                                     />
+                                    <div className='carousel_text'>                                        
+                                            <h2>КОНКУРС</h2>
+                                            <h3>Разыгрываем восхитительный Сет"Самурай "<br/> весом 1300гр (48 кусочков)</h3>
+                                            <h2>СКОРЕЕ УЧАСТВУЙ!</h2>                                        
+                                    </div>
                                 </Link>
                             </div>
                         ))
