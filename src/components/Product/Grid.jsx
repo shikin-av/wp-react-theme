@@ -8,14 +8,25 @@ import { getProducts } from '../../selectors'
 class Grid extends React.Component {
     constructor(props){
         super(props)
-        /*this.state = {
-            products: null
-        }*/
+        this.state = {
+            products: [],
+            prevCategory: null
+        }
     }
     
     componentDidMount(){
         const { category } = this.props 
         this.props.fetchProductsByCategory(category)  // action
+    }
+    componentDidUpdate(){
+        const { category } = this.props
+        console.log('категория: ', category, 'пред. категория: ', this.state.prevCategory)
+        if(category != this.state.prevCategory){
+            this.props.fetchProductsByCategory(category)  // action
+            this.setState({
+                prevCategory: category
+            })
+        }
     }
 
     renderProduct(product, index){      //TODO
@@ -48,7 +59,6 @@ class Grid extends React.Component {
             products,
             categoryName
         } = this.props
-        console.log(this.props.products)
         if(products.length){
             return(
                 <div className='container'>

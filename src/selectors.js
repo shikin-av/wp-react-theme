@@ -3,7 +3,11 @@
 }*/
 
 export const getProducts = state => {
-    //const currentPageProducts = state.productsCurrentPage
-    //TODO get currentPageProducts from all products on the store
-    return state.products
+    //console.log('getProducts()   ', state.products)
+    //console.log('products curr page:   ', state.productsCurrentPage)
+    const productsOnCurrPage = []
+    for(let id of state.productsCurrentPage){
+        productsOnCurrPage.push(state.products[id])
+    }
+    return productsOnCurrPage
 }

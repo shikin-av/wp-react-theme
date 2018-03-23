@@ -13,6 +13,7 @@ const Category = (props) => {
         <div>
             <SubCategory />
             <Grid  category={category} count='8' categoryName='Название категории' />
+            {console.log('CATEGORY ', category)}
         </div>
     )
 }
