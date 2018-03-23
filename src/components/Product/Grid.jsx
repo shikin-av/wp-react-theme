@@ -20,8 +20,7 @@ class Grid extends React.Component {
     }
     componentDidUpdate(){
         const { category } = this.props
-        console.log('категория: ', category, 'пред. категория: ', this.state.prevCategory)
-        if(category != this.state.prevCategory){
+        if(category !== this.state.prevCategory){
             this.props.fetchProductsByCategory(category)  // action
             this.setState({
                 prevCategory: category
@@ -55,7 +54,6 @@ class Grid extends React.Component {
     render(){
         const {
             category,
-            count,
             products,
             categoryName
         } = this.props

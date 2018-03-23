@@ -17,7 +17,7 @@ export default class MainMenu extends React.Component {
                 menu: window.global.menu
             })
         }else{
-            console.log('MainMenu componentWillMount: Fetch')
+            //console.log('MainMenu componentWillMount: Fetch')
             return fetch('/wp-json/api/v1/menu')
             .then((res) => res.json())
             .then(items => {

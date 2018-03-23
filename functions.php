@@ -32,7 +32,6 @@ add_action( 'rest_api_init', function () {
 // get Products by Category
 function get_products_by_category($req){
     $category_name = urldecode($req->get_param('category'));
-
     $category = get_term_by('slug', $category_name, 'product_cat', 'ARRAY_A'); 
     $category_id = $category["term_id"];
 
@@ -73,10 +72,53 @@ function get_products_by_category($req){
     return rest_ensure_response($products);   
 }
 add_action( 'rest_api_init', function () {
-        register_rest_route( 'api/v1', '/products/(?P<category>\S+)', array(
+    register_rest_route( 'api/v1', '/products/(?P<category>\S+)', array(
         'methods' => 'GET',
         'callback' => 'get_products_by_category',
-    ) );
+    ));
+});
+
+// get Subcategories
+function get_subcategories($req){
+    $category_name = urldecode($req->get_param('category'));
+    $category = get_term_by('slug', $category_name, 'product_cat', 'ARRAY_A'); 
+    $category_id = $category["term_id"];
+
+    $args = array(
+        'orderby' => 'name',
+        'parent' => $category_id,
+        'taxonomy' => 'product_cat',
+        'hide_empty' => 1
+    );
+    $categories = get_categories( $args );
+    
+    $subcategories = [];
+
+    foreach ( $categories as $category ) {
+        //$category["parent_name"] = 
+        array_push($subcategories, $category);
+    }
+    return rest_ensure_response($subcategories);
+}
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'api/v1', '/subcategories/(?P<category>\S+)', array(
+        'methods' => 'GET',
+        'callback' => 'get_subcategories',
+    ));
+});
+
+
+// get Category Cyrillic Name
+function get_category_name($req){
+    $category_name = urldecode($req->get_param('category'));
+    $category = get_term_by('slug', $category_name, 'product_cat', 'ARRAY_A');
+    return $category["name"];
+}
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'api/v1', '/categoryname/(?P<category>\S+)', array(
+        'methods' => 'GET',
+        'callback' => 'get_category_name',
+    ));
 });
 
 // for WP Customizer

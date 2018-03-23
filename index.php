@@ -45,8 +45,6 @@
         $promotions_json =  json_encode($promotions);
         echo "global.promotions = " . $promotions_json . ";\n";
 
-
-
         // Logo (wp customizer)
         $logo_url = get_theme_mod('logoUrl', '');
         echo "global.logoUrl = '" . $logo_url . "';\n";
