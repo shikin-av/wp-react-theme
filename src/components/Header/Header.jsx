@@ -19,7 +19,7 @@ const Header = () => (
             <div className='w30 col-md-4'>
                 <p id='head_block_r'>                    
                     <button className="buy_btn">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>                        
+                        <i className="fa fa-shopping-cart" aria-hidden="true"></i>                        
                         <span>&nbsp;Оформить</span>
                     </button><br/>
                     <a id='job_clock'>

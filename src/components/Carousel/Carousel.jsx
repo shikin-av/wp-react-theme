@@ -46,21 +46,31 @@ export default class Carousel extends React.Component {
             return (
                 <Slider {...settings}>
                     {
-                        this.state.slides.map(slide => (
-                            <div key={slide.ID}>
+                        this.state.slides.map(slide => {
+                            let content = jQuery.parseHTML(slide.post_content)
+                            console.log('content: ', content)
+                            return (
+                            <div key={slide.ID} className={'slide' + slide.ID}>
                                 <Link to={slide.urlTarget}>
                                     <img 
                                         src={slide.img} 
                                         alt=""
                                     />
-                                    <div className='carousel_text'>                                        
-                                            <h2>КОНКУРС</h2>
-                                            <h3>Разыгрываем восхитительный Сет"Самурай "<br/> весом 1300гр (48 кусочков)</h3>
-                                            <h2>СКОРЕЕ УЧАСТВУЙ!</h2>                                        
+                                    <div className='carousel_text'>
+                                        <div className='carousel_text_block' ref={(dom) => {
+                                            for(let el of content){
+                                                if(el.nodeName != '#text'){
+                                                    jQuery(dom).append(el.outerHTML)
+                                                }
+                                            }
+                                        }}>
+                                            
+                                        </div>
                                     </div>
                                 </Link>
                             </div>
-                        ))
+                        )
+                        })
                     }
                 </Slider>
             )

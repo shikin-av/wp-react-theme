@@ -6,7 +6,9 @@ import Blog from './Blog/Blog.jsx'
 import Category from './Product/Category.jsx'
 
 const Main = () => (
-    <div>
+    <div id='main'
+        style={{minHeight: window.innerHeight + 'px'}}
+    >
         <Switch>
             <Route
                 exact path='/' 

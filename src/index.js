@@ -23,7 +23,9 @@ const store = createStore(reducers, composeWithDevTools(applyMiddleware(historyM
 const App = () => (
     <div>
         <Header />
-        <Main />
+        <Main style={{
+            minHeight: window.outerHeight
+        }} />
         <Footer />
     </div>
 )

@@ -148,8 +148,9 @@ img#logo {
 }
 #footer{
     margin-top: 25px;
-    position: absolute;
+    /*position: absolute;*/
     width: 100%;
+    /*bottom: 0px;*/
 }
 #footer #main-menu {
     background-color: #6c757d1c !important;
@@ -195,4 +196,7 @@ p#head_block_r {
     font-weight: bold;
     text-shadow: 1px 1px 2px black, 0 0 1em black;
     color: white;
+}
+.slick-slide a{
+    text-decoration: none !important;
 }
