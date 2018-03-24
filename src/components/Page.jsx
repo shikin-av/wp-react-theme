@@ -53,16 +53,20 @@ export default class Page extends React.Component {
             console.log('this.state.content', content)
             return (
                 <div className='container'>
-                    <div className='row'>
+                    <div className='row title'>
                         <h1>{this.state.title}</h1>
                     </div>
-                    <div className='row title'>
+                    <div className='row'>
                         <div className="content" ref={(dom) => {
                             jQuery(dom).html('')
                             for(let el of content){
-                                if(el.nodeName != '#text'){
-                                    jQuery(dom).append(el.outerHTML)
-                                    jQuery(dom).append('<br>')
+                                console.log('el = ', el)
+                                console.log('el.nodeName = ', el.nodeName)
+                                console.log('--------------------------')
+                                if(el.nodeName == '#text'){
+                                    jQuery(dom).append(`<span>${el.data}</span><br>`)
+                                }else{
+                                    jQuery(dom).append(`${el.outerHTML}<br>`)
                                 }
                             }
                         }}>
@@ -73,6 +77,5 @@ export default class Page extends React.Component {
         }else{
             return(<div></div>)
         }
-        
     }
 }
