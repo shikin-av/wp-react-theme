@@ -16,8 +16,9 @@ const Main = () => (
             <Route 
                 path='/bloglist' 
                 component={Blog} />
+            
             <Route 
-                path='/category/:category' 
+                path='/category/:category/:subcategory?' 
                 component={Category} />
         </Switch>
     </div>

@@ -23,8 +23,8 @@ class SubCategories extends React.Component {
     }
 
     componentDidMount(){
-        const { category } = this.props
-        this.fetchCategories(category).then(categories => {
+        const { parentCategory } = this.props
+        this.fetchCategories(parentCategory).then(categories => {
             this.setState({
                 categories: categories
             })
@@ -32,11 +32,11 @@ class SubCategories extends React.Component {
     }
 
     componentDidUpdate(){
-        const { category } = this.props
-        if(category !== this.state.prevParentCategory){
-            this.fetchCategories(category).then(categories => {
+        const { parentCategory } = this.props
+        if(parentCategory !== this.state.prevParentCategory){
+            this.fetchCategories(parentCategory).then(categories => {
                 this.setState({
-                    prevParentCategory: category,
+                    prevParentCategory: parentCategory,
                     categories: categories
                 })
             })
@@ -44,6 +44,7 @@ class SubCategories extends React.Component {
     }
 
     render(){
+        const { parentCategory } = this.props
         return (
             <nav id='subcategory' className='navbar navbar-expand-lg navbar-light bg-light'>
                 <button 
@@ -66,7 +67,7 @@ class SubCategories extends React.Component {
                                         className='nav-item' 
                                         key={cat.term_id}
                                     >
-                                        <Link className='nav-link' to={'/category/' + cat.slug}>{cat.name}</Link>
+                                        <Link className='nav-link' to={`/category/${parentCategory}/${cat.slug}`}>{cat.name}</Link>
                                     </li>
                                 )
                             })

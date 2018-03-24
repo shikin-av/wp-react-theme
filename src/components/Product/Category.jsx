@@ -46,12 +46,11 @@ class Category extends React.Component {
     }
 
     render(){
-        const category = this.props.match.params.category
+        const { category, subcategory } = this.props.match.params
         return (
             <div>
-                <SubCategories category={category} />
-                <Grid  category={category} categoryName={this.state.categoryName} />
-                {console.log('CATEGORY ', category)}
+                <SubCategories parentCategory={category} />
+                <Grid  category={subcategory || category} categoryName={this.state.categoryName} />
             </div>
         )
     }
