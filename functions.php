@@ -121,6 +121,27 @@ add_action( 'rest_api_init', function () {
     ));
 });
 
+
+// get Page Content
+function get_page_content_by_slug($req){
+    $page_slug = urldecode($req->get_param('page'));
+    $page_data = get_page_by_path($page_slug);
+    
+    /*$page_content = [];
+    $page_content["id"] = $page_data->ID;
+    $page_content["title"] = $page_data->post_title;
+    $page_content["content"] = $page_data->post_content;*/
+
+    return rest_ensure_response($page_data);
+}
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'api/v1', '/page/(?P<page>\S+)', array(
+        'methods' => 'GET',
+        'callback' => 'get_page_content_by_slug',
+    ));
+});
+
+
 // for WP Customizer
 add_action('customize_register', function($customizer){
     $customizer->add_section(

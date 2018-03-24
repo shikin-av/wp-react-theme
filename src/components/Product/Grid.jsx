@@ -60,8 +60,8 @@ class Grid extends React.Component {
         if(products.length){
             return(
                 <div className='container'>
-                    <div className='row category_name'>
-                        <p>{categoryName}</p>
+                    <div className='row title'>
+                        <h2>{categoryName}</h2>
                     </div>
                     <div className='row grid'>
                         { products.map((product, index) => this.renderProduct(product, index)) }

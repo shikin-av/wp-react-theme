@@ -87,7 +87,7 @@ img#logo {
     padding-top: 11px;
     margin-bottom: -16px;
 }
-.category_name {
+.title {
     text-align: center;
     display: block !important;
     margin-top: 20px;
@@ -199,4 +199,8 @@ p#head_block_r {
 }
 .slick-slide a{
     text-decoration: none !important;
+}
+h1, h2 {
+    font-size: 25px !important;
+    font-weight: bold !important;
 }

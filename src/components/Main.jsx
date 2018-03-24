@@ -4,6 +4,7 @@ import {Switch, Route} from 'react-router-dom'
 import Home from './Home.jsx'
 import Blog from './Blog/Blog.jsx'
 import Category from './Product/Category.jsx'
+import Page from './Page.jsx'
 
 const Main = () => (
     <div id='main'
@@ -16,10 +17,12 @@ const Main = () => (
             <Route 
                 path='/bloglist' 
                 component={Blog} />
-            
             <Route 
                 path='/category/:category/:subcategory?' 
                 component={Category} />
+            <Route 
+                path='/:page' 
+                component={Page} />
         </Switch>
     </div>
 )
