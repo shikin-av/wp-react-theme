@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Product from './Product.jsx'
+import Buy from './Buy.jsx'
 import { fetchProductsByCategory } from '../../actions'
 import { getProducts } from '../../selectors'
 
@@ -42,9 +43,7 @@ class Grid extends React.Component {
                         <div className='product_price'>
                             <span className='price'>{product.price}</span><span>р</span>
                         </div>
-                        <div className='product_buy_div'>
-                            <button className='buy_btn'>Заказать</button>
-                        </div>
+                        <Buy count={product.count} />
                     </div>
                 </div>
             </div>

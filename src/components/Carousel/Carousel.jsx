@@ -58,6 +58,7 @@ export default class Carousel extends React.Component {
                                     />
                                     <div className='carousel_text'>
                                         <div className='carousel_text_block' ref={(dom) => {
+                                            jQuery(dom).html('')
                                             for(let el of content){
                                                 if(el.nodeName != '#text'){
                                                     jQuery(dom).append(el.outerHTML)

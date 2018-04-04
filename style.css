@@ -102,6 +102,7 @@ img#logo {
 #subcategory {
     background-color: #e9ecef38!important;
     /* box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.1); */
+    box-shadow: 3px 4px 22px rgba(0, 0, 0, 0.02);
     -webkit-box-shadow: 3px 4px 22px rgba(0, 0, 0, 0.02);
     z-index: 1;
 }
@@ -110,6 +111,7 @@ img#logo {
     background: #eee;
     padding: 5px;
     /*-webkit-box-shadow: 3px 4px 0px rgba(0, 0, 0, 0.15);*/
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.15);
     -webkit-box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.15);
 }
 .product {
@@ -131,8 +133,10 @@ img#logo {
     border-radius: 4px;
 }
 .product_buy_div .buy_btn {
-    float: right;
     margin-bottom: -8px;
+}
+.product_buy_div {
+    text-align: right;
 }
 .price {
     font-size: 26px;
@@ -201,12 +205,12 @@ p#head_block_r {
     text-decoration: none !important;
 }
 h1, h2 {
-    font-size: 25px !important;
+    font-size: 1.54rem !important;
     font-weight: bold !important;
 }
-/*
-pre{
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol" !important;
-    font-size: 100% !important;    
+.carousel_text_block h2, h1{
+    font-size: 2rem !important;
 }
-*/
+.count{
+    padding: 13px;
+}

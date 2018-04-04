@@ -12,6 +12,9 @@ export default (state = initialState, {type, payload}) => {
             for(let item of payload){
                 const key = item.ID
                 resultProducts[key] = item
+                if(!resultProducts[key]['count']){
+                    resultProducts[key]['count'] = 0
+                }
             }
             //console.log('resultProducts: ', resultProducts)
             return resultProducts
