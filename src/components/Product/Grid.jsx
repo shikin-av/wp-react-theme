@@ -43,7 +43,7 @@ class Grid extends React.Component {
                         <div className='product_price'>
                             <span className='price'>{product.price}</span><span>р</span>
                         </div>
-                        <Buy count={product.count} />
+                        <Buy id={product.ID} count={product.count} />
                     </div>
                 </div>
             </div>

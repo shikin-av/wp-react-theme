@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+import { changeProductCountToBasket } from '../../actions'
 
 class Buy extends React.Component {
     constructor(props){
@@ -18,9 +21,12 @@ class Buy extends React.Component {
             count: count
         })
     }
+    componentDidUpdate(){
+        this.props.changeProductCountToBasket(this.props.id, this.state.count)
+    }
 
     increment(){
-        let count = this.state.count
+        let count = this.state.count        
         this.setState({
             count: ++count
         })
@@ -57,4 +63,12 @@ class Buy extends React.Component {
         )
     }
 }
-export default Buy
+//export default Buy
+
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = {
+    changeProductCountToBasket
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Buy)
