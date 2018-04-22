@@ -175,7 +175,7 @@ img#logo {
     line-height: 1em;
 }
 #head_block_l {
-    text-align: center;
+    text-align: left;
     margin-bottom: 0px;
 }
 #head_block_r .buy_btn {
@@ -183,7 +183,7 @@ img#logo {
 }
 p#head_block_r {
     margin-bottom: 0px !important;
-    text-align: center;
+    text-align: right;
 }
 .carousel_text {
     margin-top: -25%;

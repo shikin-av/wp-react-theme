@@ -4,9 +4,11 @@ import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-ro
 
 import products from './products'
 import productsCurrentPage from './productsCurrentPage'
+import basket from './basket'
 
 export default combineReducers({
     products,
     productsCurrentPage,
+    basket,
     router: routerReducer
 })

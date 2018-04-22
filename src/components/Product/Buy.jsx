@@ -22,11 +22,11 @@ class Buy extends React.Component {
         })
     }
     componentDidUpdate(){
-        this.props.changeProductCountToBasket(this.props.id, this.state.count)
+        this.props.changeProductCountToBasket(this.props.id, this.state.count, this.props.price)
     }
 
     increment(){
-        let count = this.state.count        
+        let count = this.state.count
         this.setState({
             count: ++count
         })
@@ -63,9 +63,10 @@ class Buy extends React.Component {
         )
     }
 }
-//export default Buy
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({     //TODO count
+
+})
 
 const mapDispatchToProps = {
     changeProductCountToBasket

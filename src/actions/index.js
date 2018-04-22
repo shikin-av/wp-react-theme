@@ -19,13 +19,14 @@ export const fetchProductsByCategory = (category) => async dispatch => {
     }
 }
 
-export const changeProductCountToBasket = (id, count) => dispatch => {
-    console.log('ACTION changeProductCountToBasket ', id, count)
+export const changeProductCountToBasket = (id, count, price) => dispatch => {
+    //console.log('ACTION changeProductCountToBasket ', id, count)
     dispatch({
         type: types.CHANGE_PRODUCT_COUNT_TO_BASKET,
         payload: {
             id,
-            count
+            count,
+            price
         }
     })
 }

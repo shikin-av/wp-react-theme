@@ -50,7 +50,7 @@ export default class Page extends React.Component {
         const { page } = this.props.match.params
         if(this.state.content){
             let content = jQuery.parseHTML(this.state.content)
-            console.log('this.state.content', content)
+            //console.log('this.state.content', content)
             return (
                 <div className='container'>
                     <div className='row title'>
@@ -60,9 +60,9 @@ export default class Page extends React.Component {
                         <div className="content" ref={(dom) => {
                             jQuery(dom).html('')
                             for(let el of content){
-                                console.log('el = ', el)
-                                console.log('el.nodeName = ', el.nodeName)
-                                console.log('--------------------------')
+                                //console.log('el = ', el)
+                                //console.log('el.nodeName = ', el.nodeName)
+                                //console.log('--------------------------')
                                 if(el.nodeName == '#text'){
                                     jQuery(dom).append(`<span>${el.data}</span><br>`)
                                 }else{

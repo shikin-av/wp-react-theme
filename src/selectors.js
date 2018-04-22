@@ -11,3 +11,14 @@ export const getProducts = state => {
     }
     return productsOnCurrPage
 }
+
+export const getPriceToBasket = state => {
+    console.log('selector getPriceToBasket ', state.basket)
+    const basket = state.basket
+    let resultPrice = 0
+    for(let i in basket){
+        //console.log('i ', basket[i])
+        resultPrice += (basket[i]['price'] * basket[i]['count'])
+    }
+    return resultPrice
+}

@@ -48,7 +48,7 @@ export default class Carousel extends React.Component {
                     {
                         this.state.slides.map(slide => {
                             let content = jQuery.parseHTML(slide.post_content)
-                            console.log('content: ', content)
+                            //console.log('content: ', content)
                             return (
                             <div key={slide.ID} className={'slide' + slide.ID}>
                                 <Link to={slide.urlTarget}>
