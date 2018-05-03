@@ -11,10 +11,9 @@ class BuyButton extends React.Component {
         }
     }
 
-    componentWillUpdate(){
-        /*this.setState({
-            price: this.props.price
-        })*/
+    componentDidUpdate(){
+        console.log('BuyButton ' + 'this.props.price' + ' = ' + this.props.price)
+        console.log('BuyButton ' + 'this.state.price' + ' = ' + this.state.price)
         if(this.state.price !== this.props.price){
             this.setState({
                 price: this.props.price
