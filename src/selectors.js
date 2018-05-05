@@ -13,13 +13,12 @@ export const getProducts = state => {
 }
 
 export const getPriceToBasket = state => {
-    const basket = state.basket
+    const basket = state.basket    
     let resultPrice = 0
     for(let i in basket){
         //console.log('i ', basket[i])
         resultPrice += (basket[i]['price'] * basket[i]['count'])
     }
-    console.log('selector getPriceToBasket ', resultPrice)
     return resultPrice
 }
 

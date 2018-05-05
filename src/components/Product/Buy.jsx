@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { changeProductCountToBasket } from '../../actions'
+import { getPriceToBasket } from '../../selectors'
 
 class Buy extends React.Component {
     constructor(props){
@@ -23,6 +24,8 @@ class Buy extends React.Component {
     }
     componentDidUpdate(){
         this.props.changeProductCountToBasket(this.props.id, this.state.count, this.props.price)
+        //const { basketPrice } = this.props
+        global.basketUpdate()
     }
 
     increment(){
@@ -65,7 +68,7 @@ class Buy extends React.Component {
 }
 
 const mapStateToProps = state => ({     //TODO count
-
+    //basketPrice: getPriceToBasket(state)
 })
 
 const mapDispatchToProps = {

@@ -20,7 +20,7 @@ const Header = () => (
                 </div>
                 <div className='w30 col-md-4'>
                     <p id='head_block_r'>
-                        <BuyButton />
+                        <BuyButton key={Math.random()} />
                         <br/>
                         <a id='job_clock'>
                             Вс-Чт <span className='b'>10-00</span> до <span className='b'>22-00</span><br/>
