@@ -131,6 +131,7 @@ img#logo {
     color: white;
     font-weight: bold;
     border-radius: 4px;
+    cursor: pointer;
 }
 .product_buy_div .buy_btn {
     margin-bottom: -8px;
@@ -235,4 +236,20 @@ div.description{
 p.description_content{
     padding:10px;
     margin:0px;
+}
+
+.detail {
+    display: block;
+    /*margin: 0 auto;*/
+    text-align: center;
+}
+.short_description {
+    display: block;
+    min-height: 35%;
+}
+p.description_content {
+    padding: 10px;
+    margin: 0px;
+    display: block;
+    height: 100%;
 }

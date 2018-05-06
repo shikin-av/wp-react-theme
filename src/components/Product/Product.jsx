@@ -28,15 +28,17 @@ class Product extends React.Component {
                                 hover: false
                             })
                         }
-                    >
-                        <img src={product.thumbnail} />
+                    >   
+                        <Link to={`/product/${product.ID}`}>
+                            <img src={product.thumbnail} />
+                        </Link>
                         <div className='description'
                             style={{ opacity: hover ? '1' : '0' }}
                         >
                             <p className='description_content'>
-                                {product.short_description}
+                                <span className='short_description'>{product.short_description}</span>
                                 <br/>
-                                <Link to='/'>
+                                <Link to={`/product/${product.ID}`} className='detail'>
                                     <button className='buy_btn'>Подробнее</button>
                                 </Link>
                             </p>

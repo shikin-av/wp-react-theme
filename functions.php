@@ -63,15 +63,15 @@ function get_products_by_category($req){
     while ( $loop->have_posts() ){ 
         $loop->the_post();
         global $product;
-        $products[$i]["ID"] = $loop->post->ID;
-        $products[$i]["name"] = $product->get_title();
-        $products[$i]["price"] = $product->get_price();
-        $products[$i]["thumbnail"] = get_the_post_thumbnail_url($loop->post->ID, 'shop_catalog');
-        $products[$i]["short_description"] = $loop->post->post_excerpt;
+        $products[$i]["ID"] =                   $loop->post->ID;
+        $products[$i]["name"] =                 $product->get_title();
+        $products[$i]["price"] =                $product->get_price();
+        $products[$i]["thumbnail"] =            get_the_post_thumbnail_url($loop->post->ID, 'shop_catalog');
+        $products[$i]["short_description"] =    $loop->post->post_excerpt;
         //$products[$i]["content"] = $loop->post->post_content;
         $i++;
     }
-    return rest_ensure_response($products);   
+    return rest_ensure_response($products);
 }
 add_action( 'rest_api_init', function () {
     register_rest_route( 'api/v1', '/products/(?P<category>\S+)', array(
@@ -140,6 +140,27 @@ add_action( 'rest_api_init', function () {
     register_rest_route( 'api/v1', '/page/(?P<page>\S+)', array(
         'methods' => 'GET',
         'callback' => 'get_page_content_by_slug',
+    ));
+});
+
+
+// for Product Page
+function get_product_by_id($req){
+    $id = urldecode($req->get_param('id'));
+    $product = wc_get_product( $id );
+    
+    $result["ID"] =                 $id;
+    $result["name"] =               $product->get_title();
+    $result["price"] =              $product->get_price();
+    $result["short_description"] =  $product->get_short_description();
+    $result["content"] =            $product->get_description();
+
+    return rest_ensure_response($result);
+}
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'api/v1', '/product/(?P<id>\d+)', array(
+        'methods' => 'GET',
+        'callback' => 'get_product_by_id',
     ));
 });
 

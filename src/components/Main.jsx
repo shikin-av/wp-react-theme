@@ -5,6 +5,7 @@ import Home from './Home.jsx'
 import Blog from './Blog/Blog.jsx'
 import Category from './Product/Category.jsx'
 import Page from './Page.jsx'
+import ProductPage from './Product/ProductPage.jsx'
 
 const Main = () => (
     <div id='main'
@@ -20,6 +21,9 @@ const Main = () => (
             <Route 
                 path='/category/:category/:subcategory?' 
                 component={Category} />
+            <Route 
+                path='/product/:id' 
+                component={ProductPage} />
             <Route 
                 path='/:page' 
                 component={Page} />
