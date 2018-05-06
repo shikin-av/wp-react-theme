@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Product from './Product.jsx'
-import Buy from './Buy.jsx'
 import { fetchProductsByCategory } from '../../actions'
 import { getProducts } from '../../selectors'
 
@@ -29,27 +28,6 @@ class Grid extends React.Component {
         }
     }
 
-    renderProduct(product){      //TODO
-        return (
-            <div className='col-sm-3 col-md-3 col-lg-3 product' key={product.ID}>
-                <div className='product_inner'>
-                    <div className='thumbnail'>
-                        <img src={product.thumbnail} />
-                    </div>
-                    <div className='product_name'>
-                        {product.name}
-                    </div>                    
-                    <div className='buy'>
-                        <div className='product_price'>
-                            <span className='price'>{product.price}</span><span>р</span>
-                        </div>
-                        <Buy id={product.ID} count={product.count} price={product.price} />
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
     render(){
         const {
             category,
@@ -63,7 +41,7 @@ class Grid extends React.Component {
                         <h2>{categoryName}</h2>
                     </div>
                     <div className='row grid'>
-                        { products.map((product, index) => this.renderProduct(product)) }
+                        { products.map((product, index) => <Product product={product} key={product.ID} />) }
                     </div>
                 </div>
             )

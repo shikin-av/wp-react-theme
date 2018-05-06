@@ -65,8 +65,10 @@ function get_products_by_category($req){
         global $product;
         $products[$i]["ID"] = $loop->post->ID;
         $products[$i]["name"] = $product->get_title();
-        $products[$i]["price"] = $product->get_price();        
+        $products[$i]["price"] = $product->get_price();
         $products[$i]["thumbnail"] = get_the_post_thumbnail_url($loop->post->ID, 'shop_catalog');
+        $products[$i]["short_description"] = $loop->post->post_excerpt;
+        //$products[$i]["content"] = $loop->post->post_content;
         $i++;
     }
     return rest_ensure_response($products);   
