@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, Route, Link} from 'react-router-dom'
 
 import BlogPage from './BlogPage.jsx'
+import { fetchBlogPosts as fetchBlogPostsApi } from '../../api'
 
 const Blog = () => (
     <Switch>
@@ -21,13 +22,16 @@ class BlogList extends React.Component {
     }
     
     componentWillMount(){
-        return fetch('/wp-json/wp/v2/posts')    //TODO  try/catch
-        .then((res) => res.json())
-        .then(posts => {
-            this.setState({
-                posts: posts,
+        try{
+            return fetchBlogPostsApi()
+            .then(posts => {
+                this.setState({
+                    posts: posts,
+                })
             })
-        })
+        }catch(err){
+            console.log(`ERROR ${err.stack}`)
+        }
     }
     
     render(){

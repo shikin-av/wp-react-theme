@@ -2,6 +2,8 @@ import React from 'react'
 import Slider from 'react-slick'
 import {Link} from 'react-router-dom'
 
+import { fetchPromotions as fetchPromotionsApi } from '../../api'
+
 export default class Carousel extends React.Component {
     constructor(props){
         super(props)
@@ -10,24 +12,25 @@ export default class Carousel extends React.Component {
             slides: []
         }
     }
-    // https://github.com/akiran/react-slick    
     componentWillMount(){
-        if(window.global.promotions){           //TODO Не показывать на мобилках
+        if(window.global.promotions){           //TODO hide to mobile devices
             this.setState({
                 slides: window.global.promotions
             })
         }else{
-            /*console.log('Carousel componentWillMount: Fetch')
-            return fetch('/wp-json/wp/v2/promotions')
-            .then((res) => res.json())
-            .then(items => {
-                this.setState({
-                    slides: items
+            try{
+                return fetchPromotionsApi()
+                .then(items => {
+                    this.setState({
+                        slides: items
+                    })
                 })
-            })*/
-            this.setState({
-                slides: []
-            })
+            }catch(err){
+                this.setState({
+                    slides: []
+                })
+                console.log(`ERROR ${err.stack}`)
+            }
         }
     }
 

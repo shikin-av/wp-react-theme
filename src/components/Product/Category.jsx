@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import Grid from './Grid.jsx'
 import SubCategories from './SubCategory.jsx'
+import { fetchCategoryName as fetchCategoryNameApi } from '../../api'
 
-//const Category = (props) => {
 class Category extends React.Component {
     constructor(props){
         super(props)
@@ -14,27 +14,22 @@ class Category extends React.Component {
         }
     }
 
-    async fetchCategoryName(category){
+    componentDidMount(){
+        const { category, subcategory } = this.props.match.params
         try{
-            return fetch('/wp-json/api/v1/categoryname/' + category)
-            .then((res) => res.json())
+            return fetchCategoryNameApi(category)
             .then(name => {
-                return name
+                this.setState({
+                    categoryName: name
+                })
             })
         }catch(err){
             console.log(`ERROR ${err.stack}`)
         }
-    }
-
-    componentDidMount(){
-        const { category, subcategory } = this.props.match.params
-        this.fetchCategoryName(category).then(name => {
-            this.setState({
-                categoryName: name
-            })
-        })
+        
         if(subcategory){
-            this.fetchCategoryName(subcategory).then(name => {
+            return fetchCategoryNameApi(subcategory)
+            .then(name => {
                 this.setState({
                     subcategoryName: name
                 })
@@ -44,24 +39,32 @@ class Category extends React.Component {
 
     componentDidUpdate(){
         const { category, subcategory } = this.props.match.params
-        this.fetchCategoryName(category).then(name => {
-            if(name !== this.state.categoryName){
-                this.setState({
-                    categoryName: name
-                })
-            }
-            if(subcategory){
-                this.fetchCategoryName(subcategory).then(name => {
-                    if(name !== this.state.subcategoryName){
-                        this.setState({
-                            subcategoryName: name
-                        })
-                    }
-                })
-            }else{
-                this.state.subcategoryName = ''
-            }
-        })
+
+        try{
+            return fetchCategoryNameApi(category)
+            .then(name => {
+                if(name !== this.state.categoryName){
+                    this.setState({
+                        categoryName: name
+                    })
+                }
+                if(subcategory){
+                    return fetchCategoryNameApi(subcategory)
+                    .then(name => {
+                        if(name !== this.state.subcategoryName){
+                            this.setState({
+                                subcategoryName: name
+                            })
+                        }
+                    })
+                }else{
+                    this.state.subcategoryName = ''
+                }
+            })
+        }catch(err){
+            console.log(`ERROR ${err.stack}`)
+        }
+        
         
     }
 

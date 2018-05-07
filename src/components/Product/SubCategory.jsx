@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+import { fetchSubcategories as fetchSubcategoriesApi } from '../../api'
+
 class SubCategories extends React.Component {
     constructor(props){
         super(props)
@@ -10,36 +12,34 @@ class SubCategories extends React.Component {
         }
     }
 
-    async fetchCategories(parentCategory){
+    componentDidMount(){
+        const { parentCategory } = this.props
         try{
-            return fetch('/wp-json/api/v1/subcategories/' + parentCategory)
-            .then((res) => res.json())
-            .then(items => {
-                return items
+            return fetchSubcategoriesApi(parentCategory)
+            .then(categories => {
+                this.setState({
+                    categories: categories
+                })
             })
         }catch(err){
             console.log(`ERROR ${err.stack}`)
         }
     }
 
-    componentDidMount(){
-        const { parentCategory } = this.props
-        this.fetchCategories(parentCategory).then(categories => {
-            this.setState({
-                categories: categories
-            })
-        })
-    }
-
     componentDidUpdate(){
         const { parentCategory } = this.props
         if(parentCategory !== this.state.prevParentCategory){
-            this.fetchCategories(parentCategory).then(categories => {
-                this.setState({
-                    prevParentCategory: parentCategory,
-                    categories: categories
+            try{
+                return fetchSubcategoriesApi(parentCategory)
+                .then(categories => {
+                    this.setState({
+                        prevParentCategory: parentCategory,
+                        categories: categories
+                    })
                 })
-            })
+            }catch(err){
+                console.log(`ERROR ${err.stack}`)
+            }
         }
     }
 

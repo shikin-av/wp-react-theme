@@ -155,6 +155,13 @@ function get_product_by_id($req){
     $result["short_description"] =  $product->get_short_description();
     $result["content"] =            $product->get_description();
 
+    $attachment_ids = $product->get_gallery_attachment_ids();
+    $i = 0;
+    foreach( $attachment_ids as $attachment_id ) {
+        $result["images"][$i] = wp_get_attachment_url($attachment_id);
+        $i++;
+    }
+
     return rest_ensure_response($result);
 }
 add_action( 'rest_api_init', function () {

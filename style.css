@@ -253,3 +253,12 @@ p.description_content {
     display: block;
     height: 100%;
 }
+.images img {
+    width: 100%;
+    box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.15);
+    margin-bottom: 25px;
+}
+.product_info {
+    margin-top: 19px;
+}

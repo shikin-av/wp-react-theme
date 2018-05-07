@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { fetchPageContent as fetchPageContentApi } from '../api'
+
 export default class Page extends React.Component {
     constructor(props){
         super(props)
@@ -11,39 +13,37 @@ export default class Page extends React.Component {
         }
     }
 
-    async fetchPageContent(page){
-        try{
-            return fetch('/wp-json/api/v1/page/' + page)
-            .then((res) => res.json())
-            .then(items => {
-                return items
-            })
-        }catch(err){
-            console.log(`ERROR ${err.stack}`)
-        }
-    }
-
     componentDidMount(){
         const { page } = this.props.match.params
-        this.fetchPageContent(page).then(data => {
-            this.setState({
-                title: data.post_title,
-                content: data.post_content,
-                prevPageSlug: data.post_name
-            })
-        })
-    }
-    componentDidUpdate(){
-        const { page } = this.props.match.params
-        this.fetchPageContent(page).then(data => {
-            if(this.state.prevPageSlug !== data.post_name){
+        try{
+            return fetchPageContentApi(page)
+            .then(data => {
                 this.setState({
                     title: data.post_title,
                     content: data.post_content,
                     prevPageSlug: data.post_name
                 })
-            }
-        })
+            })
+        }catch(err){
+            console.log(`ERROR ${err.stack}`)
+        }
+    }
+    componentDidUpdate(){
+        const { page } = this.props.match.params
+        try{
+            return fetchPageContentApi(page)
+            .then(data => {
+                if(this.state.prevPageSlug !== data.post_name){
+                    this.setState({
+                        title: data.post_title,
+                        content: data.post_content,
+                        prevPageSlug: data.post_name
+                    })
+                }
+            })
+        }catch(err){
+            console.log(`ERROR ${err.stack}`)
+        }
     }
 
     render(){

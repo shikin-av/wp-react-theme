@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+import { fetchMenu as fetchMenuApi } from '../../api'
+
 export default class MainMenu extends React.Component {
     constructor(props){
         super(props)
@@ -8,7 +10,6 @@ export default class MainMenu extends React.Component {
             menu: null,
             current: null
         }
-        //this.setState = this.setState.bind(this)
     }
 
     componentWillMount(){
@@ -17,14 +18,16 @@ export default class MainMenu extends React.Component {
                 menu: window.global.menu
             })
         }else{
-            //console.log('MainMenu componentWillMount: Fetch')
-            return fetch('/wp-json/api/v1/menu')
-            .then((res) => res.json())
-            .then(items => {
-                this.setState({
-                    menu: items
+            try{
+                return fetchMenuApi()
+                .then(items => {
+                    this.setState({
+                        menu: items
+                    })
                 })
-            })
+            }catch(err){
+                console.log(`ERROR ${err.stack}`)
+            }
         }
     }
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
+
+import { fetchBlogPageContent as fetchBlogPageContentApi } from '../../api'
 
 export default class BlogPage extends React.Component {
     constructor(props){
@@ -9,14 +11,17 @@ export default class BlogPage extends React.Component {
         }
     }
 
-    componentWillMount(){        
-        return fetch('/wp-json/wp/v2/posts/' + this.props.match.params.id)
-        .then((res) => res.json())
-        .then(post => {
-            this.setState({
-                post: post,
+    componentWillMount(){
+        try{
+            return fetchBlogPageContentApi(this.props.match.params.id)
+            .then(post => {
+                this.setState({
+                    post: post,
+                })
             })
-        })
+        }catch(err){
+            console.log(`ERROR ${err.stack}`)
+        }
     }
 
     render() {
