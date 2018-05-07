@@ -1,18 +1,22 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Buy from './Buy.jsx'
 import { fetchProductById as fetchProductByIdApi } from '../../api'
+import { getBasket } from '../../selectors'
+import { currentProductToStateProductsCurrentPage } from '../../actions'
 
 class ProductPage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            product: null
+            product: null,
+            count: null
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         const { id } = this.props.match.params
         try{
             return fetchProductByIdApi(id)
@@ -20,15 +24,15 @@ class ProductPage extends React.Component {
                 this.setState({
                     product: product
                 })
-                console.log(this.state.product)
             })
         }catch(err){
             console.log(`ERROR ${err.stack}`)
         }
     }
 
-    componentWillUpdate(){
+    componentDidUpdate(){
         const { id } = this.props.match.params
+
         try{
             return fetchProductByIdApi(id)
             .then(product => {
@@ -36,11 +40,20 @@ class ProductPage extends React.Component {
                     this.setState({
                         product: product
                     })
-                    console.log('update')
                 }
             })
         }catch(err){
             console.log(`ERROR ${err.stack}`)
+        }
+    }
+
+    getCountOnBasket(){
+        const { basket } = this.props
+        const { id } = this.props.match.params
+        if(basket[id]){
+            return basket[id].count
+        }else{
+            return 0
         }
     }
 
@@ -56,31 +69,33 @@ class ProductPage extends React.Component {
                     <div className='row product_info'>
                         <div className='images col-md-6'>
                             {
-                                product.images.map((url, index) =>
+                                product.images ? (product.images.map((url, index) =>
                                     <img src={url} key={index} />
-                                )
+                                )) : null
                             }
                         </div>
                         <div className='col-md-6'>
-                            <div class="product_price">
+                            <div className="product_price">
                                 <b>
-                                    <span class="price">{product.price}</span>
+                                    <span className="price">{product.price}</span>
                                     <span>р</span>
                                 </b>
+                                <Buy id={product.ID} count={this.getCountOnBasket()} price={product.price} />
                             </div>
                             <div className="content" ref={(dom) => {
                                 jQuery(dom).html('')
-                                for(let el of content){
-                                    if(el.nodeName == '#text'){
-                                        jQuery(dom).append(`<span>${el.data}</span><br>`)
-                                    }else{
-                                        jQuery(dom).append(`${el.outerHTML}`)
+                                if(content){
+                                    for(let el of content){
+                                        if(el.nodeName == '#text'){
+                                            jQuery(dom).append(`<span>${el.data}</span><br>`)
+                                        }else{
+                                            jQuery(dom).append(`${el.outerHTML}`)
+                                        }
                                     }
                                 }
                             }}>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             )
@@ -90,4 +105,15 @@ class ProductPage extends React.Component {
     }
 }
 
-export default ProductPage
+
+
+//export default ProductPage
+const mapStateToProps = state => ({
+    basket: getBasket(state)
+})
+
+const mapDispatchToProps = {
+    
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage)

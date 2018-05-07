@@ -8,7 +8,7 @@ export default (state = initialState, {type, payload}) => {
           return payload.map(product => {
             return product.ID
           })
-                      
+
       default:
           return state
   }

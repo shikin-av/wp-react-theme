@@ -17,6 +17,7 @@ class Grid extends React.Component {
     componentDidMount(){
         const { category } = this.props 
         this.props.fetchProductsByCategory(category)  // action
+        //console.log('category: ', category)
     }
     componentDidUpdate(){
         const { category } = this.props
