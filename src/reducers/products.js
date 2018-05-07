@@ -11,9 +11,9 @@ export default (state = initialState, {type, payload}) => {
                 const key = item.ID
                 resultProducts[key] = Object.assign(item, resultProducts[key])
 
-                if(!resultProducts[key]['count']){
+                /*if(!resultProducts[key]['count']){
                     resultProducts[key]['count'] = 0
-                }
+                }*/
             }
             return resultProducts
 

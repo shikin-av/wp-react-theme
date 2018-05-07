@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import Product from './Product.jsx'
 import { fetchProductsByCategory } from '../../actions'
-import { getProducts } from '../../selectors'
+import { getProducts, getBasket } from '../../selectors'
 
 class Grid extends React.Component {
     constructor(props){
@@ -33,7 +33,8 @@ class Grid extends React.Component {
         const {
             category,
             products,
-            categoryName
+            categoryName,
+            basket
         } = this.props
         if(products.length){
             return(
@@ -42,7 +43,17 @@ class Grid extends React.Component {
                         <h2>{categoryName}</h2>
                     </div>
                     <div className='row grid'>
-                        { products.map((product, index) => <Product product={product} key={product.ID} />) }
+                        {
+                            products.map((product, index) => {
+                                if(basket[product.ID]){
+                                    const basketProduct = basket[product.ID]
+                                    product.count = basketProduct.count
+                                }else{
+                                    product.count = 0
+                                }
+                                return <Product product={product} key={product.ID} />
+                            })
+                        }
                     </div>
                 </div>
             )
@@ -53,7 +64,8 @@ class Grid extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    products: getProducts(state)
+    products: getProducts(state),
+    basket: getBasket(state)
 })
 
 const mapDispatchToProps = {
