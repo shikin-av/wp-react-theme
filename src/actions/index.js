@@ -29,3 +29,12 @@ export const changeProductCountToBasket = (id, count, price) => dispatch => {
         }
     })
 }
+
+export const getBasketFromLocalStorage = (basketLS) => dispatch => {
+    dispatch({
+        type: types.GET_BASKET_FROM_LOCAL_STORAGE,
+        payload: {
+            basketLS
+        }
+    })
+}

@@ -2,11 +2,11 @@ import React from 'react'
 
 import MainMenu from './MainMenu.jsx'
 import Logo from './Logo.jsx'
-import BuyButton from '../Basket/BuyButton.jsx'
+import Basket from '../Basket/Basket.jsx'
 
 const Header = () => (
     <div>
-        <div id='header' className='row'>
+        <div id='header'>
             <div className="container">
                 <div className='w30 col-md-4'>
                     <p id='head_block_l'>
@@ -20,7 +20,7 @@ const Header = () => (
                 </div>
                 <div className='w30 col-md-4'>
                     <p id='head_block_r'>
-                        <BuyButton key={Math.random()} />
+                        <Basket key={Math.random()} />
                         <br/>
                         <a id='job_clock'>
                             Вс-Чт <span className='b'>10-00</span> до <span className='b'>22-00</span><br/>

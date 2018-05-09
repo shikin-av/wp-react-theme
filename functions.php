@@ -97,7 +97,6 @@ function get_subcategories($req){
     $subcategories = [];
 
     foreach ( $categories as $category ) {
-        //$category["parent_name"] = 
         array_push($subcategories, $category);
     }
     return rest_ensure_response($subcategories);
