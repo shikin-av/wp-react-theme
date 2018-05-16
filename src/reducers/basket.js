@@ -5,9 +5,13 @@ const initialState = {}
 export default (state = initialState, {type, payload}) => {
     switch(type){
         case types.CHANGE_PRODUCT_COUNT_TO_BASKET:
-        state[payload.id] = {
-                count: payload.count,
-                price: parseInt(payload.price)
+            if(payload.count !== 0){
+                state[payload.id] = {
+                    count: payload.count,
+                    price: parseInt(payload.price)
+                }
+            }else{
+                delete state[payload.id]
             }
             return state
         

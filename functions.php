@@ -153,6 +153,7 @@ function get_product_by_id($req){
     $result["price"] =              $product->get_price();
     $result["short_description"] =  $product->get_short_description();
     $result["content"] =            $product->get_description();
+    $result["thumbnail"] =          get_the_post_thumbnail_url($id, 'shop_catalog');
 
     $attachment_ids = $product->get_gallery_attachment_ids();
     $i = 0;

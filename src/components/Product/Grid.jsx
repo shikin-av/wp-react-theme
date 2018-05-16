@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import Product from './Product.jsx'
 import { fetchProductsByCategory } from '../../actions'
-import { getProducts, getBasket } from '../../selectors'
+import { getProductsOnCurrentPage, getBasket } from '../../selectors'
 
 class Grid extends React.Component {
     constructor(props){
@@ -63,7 +63,7 @@ class Grid extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    products: getProducts(state),
+    products: getProductsOnCurrentPage(state),
     basket: getBasket(state)
 })
 

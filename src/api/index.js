@@ -14,7 +14,7 @@ export const fetchProductById = async(id) => {
 }
 
 export const fetchBlogPosts = async => {
-    return fetch('/wp-json/wp/v2/posts')    //TODO  try/catch
+    return fetch('/wp-json/wp/v2/posts')
     .then(res => res.json())
 }
 

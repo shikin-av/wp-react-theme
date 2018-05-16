@@ -262,3 +262,13 @@ p.description_content {
 .product_info {
     margin-top: 19px;
 }
+img.basket_thumbnail {
+    height: 100px;
+    width: auto;
+}
+#basket_list li{
+    list-style: none;
+}
+.basket_list_price{
+    text-align: right;
+}

@@ -1,4 +1,4 @@
-export const getProducts = state => {
+export const getProductsOnCurrentPage = state => {
     const productsOnCurrPage = []
     for(let id of state.productsCurrentPage){
         productsOnCurrPage.push(state.products[id])
@@ -18,3 +18,7 @@ export const getProducts = state => {
 export const getBasket = state => {
     return state.basket
 }
+
+/*export const getProductsOnState = state => {
+    return state.products
+}*/

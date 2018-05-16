@@ -6,28 +6,45 @@ import Blog from './Blog/Blog.jsx'
 import Category from './Product/Category.jsx'
 import Page from './Page.jsx'
 import ProductPage from './Product/ProductPage.jsx'
+import BasketPage from './Basket/BasketPage.jsx'
 
-const Main = () => (
-    <div id='main'
-        style={{minHeight: window.innerHeight + 'px'}}
-    >
-        <Switch>
-            <Route
-                exact path='/' 
-                component={Home} />
-            <Route 
-                path='/bloglist' 
-                component={Blog} />
-            <Route 
-                path='/category/:category/:subcategory?' 
-                component={Category} />
-            <Route 
-                path='/product/:id' 
-                component={ProductPage} />
-            <Route 
-                path='/:page' 
-                component={Page} />
-        </Switch>
-    </div>
-)
+class Main extends React.Component {
+    constructor(props){
+        super(props)
+    }
+
+    componentWillUpdate(){
+        // scroll to top on switch route
+        document.getElementById('header').scrollIntoView(true)
+    }
+
+    render(){
+        return (
+            <div id='main'
+                style={{minHeight: window.innerHeight + 'px'}}
+            >
+                <Switch>
+                    <Route
+                        exact path='/' 
+                        component={Home} />
+                    <Route 
+                        path='/bloglist' 
+                        component={Blog} />
+                    <Route 
+                        path='/basket' 
+                        component={BasketPage} />
+                    <Route 
+                        path='/category/:category/:subcategory?' 
+                        component={Category} />
+                    <Route 
+                        path='/product/:id' 
+                        component={ProductPage} />
+                    <Route 
+                        path='/:page' 
+                        component={Page} />
+                </Switch>
+            </div>
+        )
+    }
+}
 export default Main
