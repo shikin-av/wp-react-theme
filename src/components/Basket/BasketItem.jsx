@@ -26,32 +26,37 @@ class BasketItem extends React.Component {
         }
     }
 
-    viewProductInfo(product){
-        const { productInfo } = this.state
-        console.log('INFO ', productInfo)
-        return (
-            <div>
-                <img src={productInfo.thumbnail} className='basket_thumbnail' />
-                <span className='price'>{productInfo.name}</span>
-                <span className='basket_list_price'>
-                    <span className='price'>{product.price}</span>
-                    р.
-                </span>
-                <Buy id={product.ID} count={product.count} price={product.price} />
-            </div>
-        )
-    }
-
     render(){
         const { product } = this.props
         const { productInfo } = this.state
-        return (
-            <li>
-                {
-                    productInfo ? this.viewProductInfo(product) : <div>Закгрузка информации<br/> о продукте...</div>
-                }
-            </li>
-        )
+        if(productInfo){
+            return (
+                <tr>
+                    <td>
+                        <img src={productInfo.thumbnail} className='basket_thumbnail' />
+                    </td>
+                    <td>
+                        <span className='basket_name'>{productInfo.name}</span>
+                    </td>
+                    <td>
+                        <span className='basket_list_price'>
+                            <span className='price'>{product.price}</span>
+                            р.
+                        </span>
+                    </td>
+                    <td>
+                        <div className='basket_buys'>
+                            <Buy id={product.ID} count={product.count} price={product.price} />
+                        </div>
+                    </td>
+                </tr>
+            )
+        }else{
+            return (
+                <tr><td>Загрузка информации о продукте...</td></tr>
+            )
+        }
+        
     }
 
 }

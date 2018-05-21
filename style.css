@@ -265,10 +265,21 @@ p.description_content {
 img.basket_thumbnail {
     height: 100px;
     width: auto;
+    display: block;
+    margin: 6px auto;
 }
 #basket_list li{
     list-style: none;
 }
 .basket_list_price{
     text-align: right;
+}
+.basket_buys .product_buy_div{
+    width: 100%;
+}
+.basket_buys {
+    min-width: 100px;
+}
+.basket_name {
+    padding-left: 20px;
 }

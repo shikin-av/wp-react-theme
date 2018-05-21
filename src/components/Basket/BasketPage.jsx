@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { getBasket } from '../../selectors'
 import BuyButton from './BuyButton.jsx'
 import BasketItem from './BasketItem.jsx'
+import Basket from './Basket.jsx'
 
 class BasketPage extends React.Component {
     constructor(props){
@@ -41,17 +42,21 @@ class BasketPage extends React.Component {
                 </div>
                 <div className='row'>
                     <div className='images col-md-6'>
-                        <ul id='basket_list'>
+                        <table id='basket_list'>
+                            <tbody>
                             {
                                 this.productList(products).map(product => (
                                     <BasketItem product={product} key={product.ID || Math.random()} />
                                 ))
                             }
-                        </ul>
+                            </tbody>
+                        </table>
                     </div>
                     <div className='col-md-6'>
                         {
-
+                            <div id='basket_order_btn'>
+                            
+                            </div>
                         }
                     </div>
                 </div>
