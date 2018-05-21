@@ -4,6 +4,7 @@ import MainMenu from './MainMenu.jsx'
 import Logo from './Logo.jsx'
 import Basket from '../Basket/Basket.jsx'
 
+
 const Header = () => (
     <div>
         <div id='header'>

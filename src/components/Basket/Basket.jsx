@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 
 import { getBasket } from '../../selectors'
-import { getBasketFromLocalStorage } from '../../actions'
+import { getBasketFromLocalStorage, changeBasketPriceToStore } from '../../actions'
 import BuyButton from './BuyButton.jsx'
 
 class Basket extends React.Component {
@@ -27,23 +28,21 @@ class Basket extends React.Component {
         }
     }
 
-    componentDidUpdate(){
-        if(this.state.price !== this.props.price){
-            this.setState({
-                price: this.props.price
-            })
-        }
-    }
+
     
     priceCalc(){
-        const { basket } = this.props
+        const { basket, changeBasketPriceToStore } = this.props
         let resultPrice = 0
         for(let i in basket){
             resultPrice += (basket[i]['price'] * basket[i]['count'])
         }
         if(resultPrice){
+            changeBasketPriceToStore(resultPrice)
             return (resultPrice + 'р.')
-        }else return null
+        }else{ 
+            changeBasketPriceToStore(null)
+            return null
+        }
     }
 
     saveToLocalStorage(){
@@ -53,7 +52,13 @@ class Basket extends React.Component {
 
     render(){
         return (
-            <BuyButton price={this.priceCalc()} />
+            <Link to='/basket'>
+                <BuyButton 
+                    price={this.priceCalc()} 
+                    key={Math.random()}
+                    text='Оформить'
+                />
+            </Link>
         )
     }
 }
@@ -63,7 +68,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-    getBasketFromLocalStorage
+    getBasketFromLocalStorage,
+    changeBasketPriceToStore
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Basket)

@@ -15,6 +15,10 @@ export const getProductsOnCurrentPage = state => {
     return resultPrice
 }*/
 
+export const getPriceToBasket = state => {
+    return state.basketPrice
+}
+
 export const getBasket = state => {
     return state.basket
 }

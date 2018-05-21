@@ -179,9 +179,9 @@ img#logo {
     text-align: left;
     margin-bottom: 0px;
 }
-#head_block_r .buy_btn {
+/*#head_block_r .buy_btn {
     font-size: 1.33em;
-}
+}*/
 p#head_block_r {
     margin-bottom: 0px !important;
     text-align: right;
@@ -282,4 +282,7 @@ img.basket_thumbnail {
 }
 .basket_name {
     padding-left: 20px;
+}
+.big_btn{
+    font-size: 1.33em;
 }

@@ -38,3 +38,12 @@ export const getBasketFromLocalStorage = (basketLS) => dispatch => {
         }
     })
 }
+
+export const changeBasketPriceToStore = (price) => dispatch => {
+    dispatch({
+        type: types.CHANGE_BASKET_PRICE_TO_STORE,
+        payload: {
+            price
+        }
+    })
+}

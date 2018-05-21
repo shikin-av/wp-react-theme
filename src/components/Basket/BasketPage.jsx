@@ -55,7 +55,17 @@ class BasketPage extends React.Component {
                     <div className='col-md-6'>
                         {
                             <div id='basket_order_btn'>
-                            
+                                <style>
+                                    {"\
+                                        #head_block_r .buy_btn{\
+                                            display:none;\
+                                        }\
+                                    "}
+                                </style>
+                                <BuyButton 
+                                    key={Math.random()}
+                                    text='Оформить заказ'
+                                />
                             </div>
                         }
                     </div>
