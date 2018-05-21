@@ -1,36 +1,14 @@
 import React from 'react'
-//import {Link} from 'react-router-dom'
-import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 
-import { getPriceToBasket } from '../../selectors'
+const BuyButton = (props) => (
+   <Link to='/basket'>
+        <button className="buy_btn big_text">
+            <span id="basket_price">{props.price}</span>
+            &nbsp;<i className="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;
+            <span>Оформить</span>
+        </button>
+    </Link>
+)
 
-class BuyButton extends React.Component {
-    constructor(props){
-        super(props)
-    }
-
-    render(){
-        const { 
-            price, 
-            getPriceToBasket, 
-            text
-        } = this.props
-        return (
-            <button className="buy_btn big_btn">
-                <span id="basket_price">{ getPriceToBasket ? getPriceToBasket + 'р.' : null }</span>
-                &nbsp;<i className="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;
-                <span>{text}</span>
-            </button>
-        )
-    }
-}
-
-const mapStateToProps = state => ({
-    getPriceToBasket: getPriceToBasket(state)
-})
-
-const mapDispatchToProps = {
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(BuyButton)
+export default BuyButton

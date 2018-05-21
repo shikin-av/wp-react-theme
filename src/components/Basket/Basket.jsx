@@ -52,13 +52,9 @@ class Basket extends React.Component {
 
     render(){
         return (
-            <Link to='/basket'>
-                <BuyButton 
-                    price={this.priceCalc()} 
-                    key={Math.random()}
-                    text='Оформить'
-                />
-            </Link>
+            <BuyButton
+                price={this.priceCalc()}
+            />
         )
     }
 }

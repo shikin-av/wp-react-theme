@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { getBasket } from '../../selectors'
+import { getBasket, getPriceToBasket } from '../../selectors'
 import BuyButton from './BuyButton.jsx'
 import BasketItem from './BasketItem.jsx'
 import Basket from './Basket.jsx'
+import OrderForm from './OrderForm.jsx'
 
 class BasketPage extends React.Component {
     constructor(props){
@@ -35,48 +36,56 @@ class BasketPage extends React.Component {
     
     render(){
         const { products, productsIsLoad } = this.state
-        return (
-            <div className='container'>
-                <div className='row title'>
-                    <h1>Оформить заказ</h1>
-                </div>
-                <div className='row'>
-                    <div className='images col-md-6'>
-                        <table id='basket_list'>
-                            <tbody>
+        const { getPriceToBasket } = this.props
+        if(getPriceToBasket){
+            return (
+                <div className='container'>
+                    <div className='row title'>
+                        <h1>Оформить заказ</h1>
+                        <strong className='price'>{ getPriceToBasket ? `Сумма: ${getPriceToBasket}р.` : null }</strong>
+                    </div>
+                    <div className='row'>
+                        <div className='images col-md-6'>
+                            <table id='basket_list'>
+                                <tbody>
+                                {
+                                    this.productList(products).map(product => (
+                                        <BasketItem product={product} key={product.ID || Math.random()} />
+                                    ))
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className='col-md-6'>
                             {
-                                this.productList(products).map(product => (
-                                    <BasketItem product={product} key={product.ID || Math.random()} />
-                                ))
+                                <div id='basket_order_btn'>
+                                    <style>
+                                        {"\
+                                            #head_block_r .buy_btn{\
+                                                display:none;\
+                                            }\
+                                        "}
+                                    </style>
+                                    <OrderForm />
+                                </div>
                             }
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className='col-md-6'>
-                        {
-                            <div id='basket_order_btn'>
-                                <style>
-                                    {"\
-                                        #head_block_r .buy_btn{\
-                                            display:none;\
-                                        }\
-                                    "}
-                                </style>
-                                <BuyButton 
-                                    key={Math.random()}
-                                    text='Оформить заказ'
-                                />
-                            </div>
-                        }
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }else{
+            return (
+                <div className='row title'>
+                    <h1>Ваша корзина пуста</h1>
+                </div>
+            )
+        }
     }
 }
 
 const mapStateToProps = state => ({
-    basket: getBasket(state)
+    basket: getBasket(state),
+    getPriceToBasket: getPriceToBasket(state)
 })
 
 const mapDispatchToProps = {
