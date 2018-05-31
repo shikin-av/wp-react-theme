@@ -43,7 +43,7 @@ export default class MainMenu extends React.Component {
                     aria-expanded='false' 
                     aria-label='Toggle navigation'
                 >
-                    <span className='navbar-toggler-icon'></span>
+                    <span>МЕНЮ</span>
                 </button>
                 <div className='collapse navbar-collapse' id='navbarNav'>
                     <ul className='navbar-nav'>

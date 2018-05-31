@@ -47,18 +47,7 @@ class SubCategories extends React.Component {
         const { parentCategory } = this.props
         return (
             <nav id='subcategory' className='navbar navbar-expand-lg navbar-light bg-light'>
-                <button 
-                    className='navbar-toggler' 
-                    type='button' 
-                    data-toggle='collapse' 
-                    data-target='#subcategoryNav' 
-                    aria-controls='subcategoryNav' 
-                    aria-expanded='false' 
-                    aria-label='Toggle navigation'
-                >
-                    <span className='navbar-toggler-icon'></span>
-                </button>
-                <div className='collapse navbar-collapse' id='subcategoryNav'>
+                <div className='' id='subcategoryNav'>
                     <ul className='navbar-nav'>
                         {
                             this.state.categories.map(cat => {

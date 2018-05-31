@@ -61,9 +61,9 @@ class BasketPage extends React.Component {
                                 <div id='basket_order_btn'>
                                     <style>
                                         {"\
-                                            #head_block_r .buy_btn{\
+                                            /*#head_block_r .buy_btn{\
                                                 display:none;\
-                                            }\
+                                            }*/\
                                         "}
                                     </style>
                                     <OrderForm />
