@@ -7,6 +7,7 @@ import Category from './Product/Category.jsx'
 import Page from './Page.jsx'
 import ProductPage from './Product/ProductPage.jsx'
 import BasketPage from './Basket/BasketPage.jsx'
+import CallMePage from './CallMePage.jsx'
 
 class Main extends React.Component {
     constructor(props){
@@ -33,6 +34,9 @@ class Main extends React.Component {
                     <Route 
                         path='/basket' 
                         component={BasketPage} />
+                    <Route 
+                        path='/callme' 
+                        component={CallMePage} />
                     <Route 
                         path='/category/:category/:subcategory?' 
                         component={Category} />

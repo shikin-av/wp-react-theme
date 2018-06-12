@@ -361,6 +361,18 @@ p#head_block_r {
 #subcategoryNav .nav-link{
     font-size: 1.1em;
 }
-#main-menu a.nav-link:hover {
+#main-menu a.nav-link:hover{
     background-color: rgba(255,255,255,.2);
+}
+.callme_form input{
+    width: 100%;
+    max-width: 250px;
+    padding: 5px;
+    margin: 4px;
+}
+.message{
+    font-weight: bold;
+    background: white;
+    padding: 5%;
+    border: 3px solid #d24a43;
 }

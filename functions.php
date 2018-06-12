@@ -209,4 +209,37 @@ add_action('customize_register', function($customizer){
         )
     );
 });
+
+
+// AJAX
+
+// define ajaxurl (ajax.url)
+add_action( 'wp_enqueue_scripts', 'define_ajaxurl', 99 );
+
+function define_ajaxurl(){
+    wp_localize_script( 'bootstrap-js', 'ajax',     // add to this script
+        array(
+            'url' => admin_url('admin-ajax.php')
+        )
+    );
+}
+
+// callme
+add_action('wp_ajax_callme_handler', 'callme_handler');         // authorised users
+add_action('wp_ajax_nopriv_callme_handler', 'callme_handler');  // unauthorised users
+
+function callme_handler(){
+    $name = $_POST['name'];
+    $phone = $_POST['phone'];
+
+    $message = 'Клиент просит перезвонить: ' . $name . ' тел. ' . $phone;
+    $admin_email = get_option('admin_email');
+    wp_mail($admin_email, 'Клиент просит перезвонить', $message);
+    //mail('acccount.undefined@gmail.com', 'тема', 'мессадж');
+    echo 'Наш менеджер свяжется с Вами в самое ближайшее время';
+    wp_die();
+}
+
+
+
 ?>

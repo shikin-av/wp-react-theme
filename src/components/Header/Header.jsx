@@ -12,8 +12,10 @@ const Header = () => (
             <div className="container">
                 <div className='w30 col-md-4'>
                     <p id='head_block_l'>
-                        <a id='headTel' href="83412232238">232-238</a><br/>
-                        <button className="buy_btn big_text">Заказать звонок</button>
+                        <a id='headTel' href='83412232238'>232-238</a><br/>
+                        <Link to='/callme'>
+                            <button className="buy_btn big_text">Заказать звонок</button>
+                        </Link>
                         <br/><br/>
                     </p>
                 </div>
