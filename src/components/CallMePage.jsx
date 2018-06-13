@@ -6,7 +6,7 @@ export default class CallMePage extends React.Component {
         this.state={
             name: null,
             phone: null,
-            message: null
+            resMessage: null
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handlePhoneChange = this.handlePhoneChange.bind(this)
@@ -15,37 +15,31 @@ export default class CallMePage extends React.Component {
     handleSubmit(e){
         const { name, phone } = this.state
         e.preventDefault()
-        if(name && phone){
-            jQuery($ => {
-                $.ajax({
-                    type: 'POST',
-                    url: ajax.url,  // defined on functions.php
-                    data: {
-                        name,
-                        phone,
-                        action: 'callme_handler'
-                    },
-                    success: (data) => {
-                        this.setState({ message: data })
-                    },
-                    error: (err) => {
-                        console.log('AJAX err: ', err)
-                    }
-                })
+        jQuery($ => {
+            $.ajax({
+                type: 'POST',
+                url: ajax.url,  // defined on functions.php
+                data: {
+                    name,
+                    phone,
+                    action: 'callme_handler'
+                },
+                success: (data) => {
+                    this.setState({ resMessage: data })
+                },
+                error: (err) => {
+                    console.log('AJAX err: ', err)
+                }
             })
-        }
+        })
     }
 
     handleNameChange(e){
-        this.setState({
-            name: e.target.value
-        })
+        this.setState({ name: e.target.value })
     }
 
     handlePhoneChange(e){
-        this.setState({
-            phone: e.target.value
-        })
+        this.setState({ phone: e.target.value })
     }
 
     render(){
@@ -59,38 +53,35 @@ export default class CallMePage extends React.Component {
                     <div className='col-md-6'>
                         <center>
                             { 
-                                this.state.message ? <p className='message'>{this.state.message}</p> 
-                                : 
-                                <div>
+                                this.state.resMessage ? <p className='resMessage'>{this.state.resMessage}</p> 
+                                :
+                                <form
+                                    onSubmit={e => this.handleSubmit(e)}
+                                >
                                     <p>Запомните форму, и мы свяжемся с Вами в ближайшее время</p>
-                                    <form 
-                                        className='callme_form'
-                                        onSubmit={e => this.handleSubmit(e)}
-                                    >
-                                        <input
-                                            type='text'
-                                            name='name'
-                                            placeholder='Ваше имя'
-                                            required
-                                            onChange={this.handleNameChange}
-    
-                                        />
-                                        <br/>
-                                        <input
-                                            type='phone'
-                                            name='phone'
-                                            placeholder='Ваш телефон'
-                                            required
-                                            onChange={this.handlePhoneChange}
-                                        />
-                                        <br/>
-                                        <input
-                                            type='submit'
-                                            value='Заказать звонок'
-                                            className='buy_btn mid_btn'
-                                        />
-                                    </form>
-                                </div>
+                                    <input
+                                        type='text'
+                                        name='name'
+                                        placeholder='Ваше имя'
+                                        required
+                                        onChange={this.handleNameChange}
+
+                                    />
+                                    <br/>
+                                    <input
+                                        type='phone'
+                                        name='phone'
+                                        placeholder='Ваш телефон'
+                                        required
+                                        onChange={this.handlePhoneChange}
+                                    />
+                                    <br/>
+                                    <input
+                                        type='submit'
+                                        value='Заказать звонок'
+                                        className='buy_btn mid_btn'
+                                    />
+                                </form>
                             }
                         </center>
                     </div>

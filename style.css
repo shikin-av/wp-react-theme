@@ -364,7 +364,13 @@ p#head_block_r {
 #main-menu a.nav-link:hover{
     background-color: rgba(255,255,255,.2);
 }
-.callme_form input{
+form input{
+    width: 100%;
+    max-width: 250px;
+    padding: 5px;
+    margin: 4px;
+}
+form textarea{
     width: 100%;
     max-width: 250px;
     padding: 5px;

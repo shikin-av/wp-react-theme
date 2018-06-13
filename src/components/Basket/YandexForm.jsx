@@ -2,7 +2,7 @@ import React from 'react'
 
 const YandexForm = (props) => (
     <form action="">
-    
+        Яндекс форма
     </form>
 )
 

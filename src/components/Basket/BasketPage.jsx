@@ -5,13 +5,16 @@ import { getBasket, getPriceToBasket } from '../../selectors'
 import BuyButton from './BuyButton.jsx'
 import BasketItem from './BasketItem.jsx'
 import Basket from './Basket.jsx'
-import OrderForm from './OrderForm.jsx'
+//import OrderForm from './OrderForm.jsx'
+import YandexForm from './YandexForm.jsx'
+import CourierForm from './CourierForm.jsx'
 
 class BasketPage extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            products: {}
+            products: {},
+            paymentMethod: null
         }
     }
 
@@ -33,9 +36,47 @@ class BasketPage extends React.Component {
         console.log('productList = ', productsOnBasket)
         return productsOnBasket
     }
+
+    showForms(){
+        const { paymentMethod, products } = this.state
+        const { getPriceToBasket } = this.props
+        console.log('products on state: ', products)
+        switch(paymentMethod){
+            case 'yandex':
+                return (
+                    <YandexForm price={getPriceToBasket} products={products} />
+                )
+                break
+            case 'courier':
+                return (
+                    <CourierForm price={getPriceToBasket} products={products} />
+                )
+                break
+            default:
+                return (
+                    <div id='order_form'>
+                        <br/>
+                        <h5>Выберите способ оплаты:</h5>
+                        <button 
+                            className="buy_btn mid_btn"
+                            onClick={() => {
+                                this.setState({ paymentMethod: 'yandex' })
+                            }}
+                        >Онлайн оплата</button>
+                        <br/>
+                        <button 
+                            className="buy_btn mid_btn"
+                            onClick={() => {
+                                this.setState({ paymentMethod: 'courier' })
+                            }}
+                        >Оплата наличными<br/> курьеру</button>
+                    </div>
+                )
+        }
+    }
     
     render(){
-        const { products, productsIsLoad } = this.state
+        const { products } = this.state
         const { getPriceToBasket } = this.props
         if(getPriceToBasket){
             return (
@@ -57,18 +98,7 @@ class BasketPage extends React.Component {
                             </table>
                         </div>
                         <div className='col-md-6'>
-                            {
-                                <div id='basket_order_btn'>
-                                    <style>
-                                        {"\
-                                            /*#head_block_r .buy_btn{\
-                                                display:none;\
-                                            }*/\
-                                        "}
-                                    </style>
-                                    <OrderForm />
-                                </div>
-                            }
+                            { this.showForms() }
                         </div>
                     </div>
                 </div>

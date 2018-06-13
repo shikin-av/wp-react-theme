@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import { connect } from 'react-redux'
 
 //import GetPrice from './GetPrice.jsx'
@@ -35,3 +35,4 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderForm)
+*/
