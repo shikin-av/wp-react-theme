@@ -217,7 +217,6 @@ add_action('customize_register', function($customizer){
 
 
 // AJAX
-
 // define ajaxurl (ajax.url)
 add_action( 'wp_enqueue_scripts', 'define_ajaxurl', 99 );
 
@@ -243,6 +242,31 @@ function callme_handler(){
     echo 'Наш менеджер свяжется с Вами в самое ближайшее время';
     wp_die();
 }
+
+//get information of several products
+add_action('wp_ajax_get_several_products', 'get_several_products');         // authorised users
+add_action('wp_ajax_nopriv_get_several_products', 'get_several_products');  // unauthorised users
+
+function get_several_products(){
+    $ids = $_POST['ids'];
+    $ids = explode(',', $ids);    
+    $products = [];
+        
+    while (list($key, $value) = each ($ids)) {
+        $id = clear($ids[$key]);
+        $product = wc_get_product($id);
+
+        $result["ID"] =                 $id;
+        $result["name"] =               $product->get_title();
+        $result["price"] =              $product->get_price();
+        $result["thumbnail"] =          get_the_post_thumbnail_url($id, 'shop_catalog');
+
+        array_push($products, $result);
+    }
+    echo json_encode($products);    
+    wp_die();
+}
+
 
 // validate data
 function clear($var){

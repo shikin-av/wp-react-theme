@@ -56,6 +56,7 @@ export default class CallMePage extends React.Component {
                                 this.state.resMessage ? <p className='resMessage'>{this.state.resMessage}</p> 
                                 :
                                 <form
+                                    className='callme_form'
                                     onSubmit={e => this.handleSubmit(e)}
                                 >
                                     <p>Запомните форму, и мы свяжемся с Вами в ближайшее время</p>
