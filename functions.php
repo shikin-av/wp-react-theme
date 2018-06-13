@@ -32,6 +32,7 @@ add_action( 'rest_api_init', function () {
 // get Products by Category
 function get_products_by_category($req){
     $category_name = urldecode($req->get_param('category'));
+    $category_name = clear($category_name);
     $category = get_term_by('slug', $category_name, 'product_cat', 'ARRAY_A'); 
     $category_id = $category["term_id"];
 
@@ -83,6 +84,7 @@ add_action( 'rest_api_init', function () {
 // get Subcategories
 function get_subcategories($req){
     $category_name = urldecode($req->get_param('category'));
+    $category_name = clear($category_name);
     $category = get_term_by('slug', $category_name, 'product_cat', 'ARRAY_A'); 
     $category_id = $category["term_id"];
 
@@ -112,6 +114,7 @@ add_action( 'rest_api_init', function () {
 // get Category Cyrillic Name
 function get_category_name($req){
     $category_name = urldecode($req->get_param('category'));
+    $category_name = clear($category_name);
     $category = get_term_by('slug', $category_name, 'product_cat', 'ARRAY_A');
     return $category["name"];
 }
@@ -126,6 +129,7 @@ add_action( 'rest_api_init', function () {
 // get Page Content
 function get_page_content_by_slug($req){
     $page_slug = urldecode($req->get_param('page'));
+    $page_slug = clear($page_slug);
     $page_data = get_page_by_path($page_slug);
     
     /*$page_content = [];
@@ -146,6 +150,7 @@ add_action( 'rest_api_init', function () {
 // for Product Page
 function get_product_by_id($req){
     $id = urldecode($req->get_param('id'));
+    $id = clear($id);
     $product = wc_get_product( $id );
     
     $result["ID"] =                 $id;
@@ -229,17 +234,22 @@ add_action('wp_ajax_callme_handler', 'callme_handler');         // authorised us
 add_action('wp_ajax_nopriv_callme_handler', 'callme_handler');  // unauthorised users
 
 function callme_handler(){
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
+    $name = clear($_POST['name']);
+    $phone = clear($_POST['phone']);
 
     $message = 'Клиент просит перезвонить: ' . $name . ' тел. ' . $phone;
     $admin_email = get_option('admin_email');
     wp_mail($admin_email, 'Клиент просит перезвонить', $message);
-    //mail('acccount.undefined@gmail.com', 'тема', 'мессадж');
     echo 'Наш менеджер свяжется с Вами в самое ближайшее время';
     wp_die();
 }
 
-
+// validate data
+function clear($var){
+    if (preg_match("/script|http|&lt;|&gt;|&lt;|&gt;|SELECT|UNION|UPDATE|exe|exec|INSERT|tmp/i", $var)) {
+        return '';
+    }
+    return $var;
+}
 
 ?>
