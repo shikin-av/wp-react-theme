@@ -267,36 +267,6 @@ function get_several_products(){
     wp_die();
 }
 
-/*
-function get_several_products($req){
-    //$ids = $_POST['ids'];
-    $ids = urldecode($req->get_param('ids'));
-    $ids = explode(',', $ids);    
-    $products = [];
-        
-    while (list($key, $value) = each ($ids)) {
-        $id = clear($ids[$key]);
-        $product = wc_get_product($id);
-
-        $result["ID"] =                 $id;
-        $result["name"] =               $product->get_title();
-        $result["price"] =              $product->get_price();
-        $result["thumbnail"] =          get_the_post_thumbnail_url($id, 'shop_catalog');
-
-        array_push($products, $result);
-    }
-    //echo json_encode($products);    
-    //wp_die();
-    return rest_ensure_response($products);
-}
-
-add_action( 'rest_api_init', function () {
-    register_rest_route( 'api/v1', '/severalproducts/(?P<ids>\S+)', array(
-        'methods' => 'GET',
-        'callback' => 'get_several_products',
-    ));
-});
-*/
 
 // courier payment
 add_action('wp_ajax_courier_form_handler', 'courier_form_handler');         // authorised users
@@ -307,24 +277,51 @@ function courier_form_handler(){
     $phone = clear($_POST['phone']);
     $email = clear($_POST['email']);
     $address = clear($_POST['address']);
-    //$products = clear($_POST['products']);
+    $data_products = clear($_POST['products']);
     $price = clear($_POST['price']);
     $user_message = clear($_POST['message']);
     
+    $message_products = '';
+    foreach($data_products as $data_product){
+        $str = stripslashes($data_product);
+        $arr = parse_product_string_to_arr($str);
+
+        $product = [];
+        foreach($arr as $item){
+            $product[(string)$item[0]] = (string)$item[1];
+        }
+        $message_products .= $product['name'];
+        $message_products .= '(' . $product['price'] . 'р.)';
+        $message_products .= ' ' . $product['count'] . ' штук\n';
+    }
+        
     $message = 'Заказ с оплатой курьеру: \n';
     $message .= $name . '\n';
     $message .= $phone . '\n';
     $message .= $email . '\n';
-    $message .= $address . '\n';
-    $message .= $user_message . '\n';
+    $message .= $address . '\n\n';
+    $message .= $user_message . '\n\n';
     $message .= 'Товары: \n';
-    $message .= 'Сумма заказа: ' . $price . 'руб.';
+    $message .= $message_products . '\n\n';
+    $message .= 'Сумма заказа: ' . $price . 'р.';
 
 
     $admin_email = get_option('admin_email');
     wp_mail($admin_email, 'Заказ с оплатой курьеру', $message);
     echo 'Спасибо за заказ. Наш менеджер свяжется с Вами в самое ближайшее время';
-    wp_die();
+    
+        wp_die();
+}
+
+function parse_product_string_to_arr($string){
+    $string = str_replace(array("{","}"), "", $string);
+    $string = str_replace('"', "", $string);
+    $arr = explode(",", $string);
+    $arr2 = [];
+    foreach($arr as $item){
+        array_push($arr2, explode(":", $item));
+    }
+    return $arr2;
 }
 
 

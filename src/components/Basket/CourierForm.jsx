@@ -9,7 +9,7 @@ export default class CourierForm extends React.Component {
             email: null,
             address: null,
             message: null,
-            resMessage: null    //TODO ЦЕНА ИЗ ПРОПС
+            resMessage: null
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handlePhoneChange = this.handlePhoneChange.bind(this)
@@ -34,7 +34,7 @@ export default class CourierForm extends React.Component {
         const { name, phone, email, address, message, resMessage } = this.state
         e.preventDefault()
         
-        let products = this.props.products   //TODO
+        let products = this.props.products
         
         for(let i in products){
             delete products[i]['ID']
@@ -42,7 +42,7 @@ export default class CourierForm extends React.Component {
         }
         let productsArr = []
         for(let i in products){
-            productsArr.push(products[i])
+            productsArr.push(JSON.stringify(products[i]))
         }
         const productsStr = productsArr.join(',')
         console.log('productsArr ', productsArr)
@@ -57,7 +57,7 @@ export default class CourierForm extends React.Component {
                     phone,
                     email,
                     address,
-                    products: productsStr,
+                    products: productsArr,
                     price,
                     message,
                     action: 'courier_form_handler'
@@ -97,7 +97,7 @@ export default class CourierForm extends React.Component {
         return (
             <div id='courierForm'>
                 {
-                    this.state.resMessage ? <p className='resMessage'>{this.state.resMessage}</p> 
+                    this.state.resMessage ? <p className='resMessage message'>{this.state.resMessage}</p> 
                     :
                     <form onSubmit={e => this.handleSubmit(e)}>
                         <br/>

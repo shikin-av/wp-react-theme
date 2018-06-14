@@ -391,3 +391,7 @@ form textarea{
 #headTel:hover{
     text-decoration: none;
 }
+.resMessage {
+    margin-top: 10%;
+    width: 70%;
+}
