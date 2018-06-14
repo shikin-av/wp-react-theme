@@ -23,6 +23,6 @@ export const getBasket = state => {
     return state.basket
 }
 
-/*export const getProductsOnState = state => {
+export const getProductsOnState = state => {
     return state.products
-}*/
+}

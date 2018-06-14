@@ -388,3 +388,6 @@ form textarea{
 .callme_form input[type='submit']{
     margin-top: 5px;
 }
+#headTel:hover{
+    text-decoration: none;
+}

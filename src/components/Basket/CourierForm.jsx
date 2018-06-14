@@ -9,7 +9,7 @@ export default class CourierForm extends React.Component {
             email: null,
             address: null,
             message: null,
-            resMessage: null
+            resMessage: null    //TODO ЦЕНА ИЗ ПРОПС
         }
         this.handleNameChange = this.handleNameChange.bind(this)
         this.handlePhoneChange = this.handlePhoneChange.bind(this)
@@ -19,22 +19,46 @@ export default class CourierForm extends React.Component {
         
     }
 
+    componentDidMount(){
+        const { products, price } = this.props
+        console.log('КУРЬЕР продукты: ', products)
+    }
+
+    componentDidUpdate(){
+        const { products } = this.props
+        console.log('КУРЬЕР продукты: ', products)
+    }
+
     handleSubmit(e){
+        const { price } = this.props
         const { name, phone, email, address, message, resMessage } = this.state
         e.preventDefault()
-
+        
         let products = this.props.products   //TODO
+        
+        for(let i in products){
+            delete products[i]['ID']
+            delete products[i]['thumbnail']
+        }
+        let productsArr = []
+        for(let i in products){
+            productsArr.push(products[i])
+        }
+        const productsStr = productsArr.join(',')
+        console.log('productsArr ', productsArr)
+        console.log('productsStr ', productsStr)
 
         jQuery($ => {
             $.ajax({
                 type: 'POST',
-                url: ajax.url,  // defined on functions.php
+                url: ajax.url,
                 data: {
                     name,
                     phone,
                     email,
                     address,
-                    products,
+                    products: productsStr,
+                    price,
                     message,
                     action: 'courier_form_handler'
                 },

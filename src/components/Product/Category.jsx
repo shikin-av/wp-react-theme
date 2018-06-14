@@ -70,11 +70,6 @@ class Category extends React.Component {
 
     render(){
         const { category, subcategory } = this.props.match.params
-
-        /*console.log('fetch name: ', name, ' | this.state.categoryName: ', this.state.categoryName)
-        console.log('this.state.subcategoryName: ', this.state.subcategoryName)
-        console.log('category: ', category, ' | ', 'subcategory: ', subcategory)*/
-
         return (
             <div>
                 <SubCategories parentCategory={category} />

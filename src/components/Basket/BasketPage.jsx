@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { getBasket, getPriceToBasket } from '../../selectors'
+import { getBasket, getPriceToBasket, getProductsOnState } from '../../selectors'
 import { fetchProductById as fetchProductByIdApi } from '../../api'
 import BuyButton from './BuyButton.jsx'
 import BasketItem from './BasketItem.jsx'
@@ -36,23 +36,27 @@ class BasketPage extends React.Component {
             products[i].ID = parseInt(i)
             productsOnBasket.push(products[i])
         }
-        console.log('productList = ', productsOnBasket)
         return productsOnBasket
     }
 
     showForms(){
-        const { paymentMethod, products } = this.state
+        const { paymentMethod, products, productsInfo } = this.state
         const { getPriceToBasket } = this.props
-        console.log('products on state: ', products)
+                
+        const productsToForm = {}
+        for(let i in productsInfo){
+            productsToForm[i] = Object.assign(products[i], productsInfo[i])
+        }
+
         switch(paymentMethod){
             case 'yandex':
                 return (
-                    <YandexForm price={getPriceToBasket} products={products} />
+                    <YandexForm price={getPriceToBasket} products={productsToForm} />
                 )
                 break
             case 'courier':
                 return (
-                    <CourierForm price={getPriceToBasket} products={products} />
+                    <CourierForm price={getPriceToBasket} products={productsToForm} />
                 )
                 break
             default:
@@ -87,7 +91,6 @@ class BasketPage extends React.Component {
             }
             ids = ids.join(',')
             console.log('ids ', ids)
-            
             jQuery($ => {
                 $.ajax({
                     type: 'POST',

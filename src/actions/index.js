@@ -1,5 +1,8 @@
 import * as types from './actionTypes'
-import { fetchProductsByCategory as fetchProductsByCategoryApi } from '../api'
+import { 
+    fetchProductsByCategory as fetchProductsByCategoryApi,
+    fetchSeveralProductsByIds as fetchSeveralProductsByIdsApi
+} from '../api'
 
 export const fetchProductsByCategory = (category) => async dispatch => {
     dispatch({ type: types.FETCH_PRODUCTS_BY_CATEGORY_START })

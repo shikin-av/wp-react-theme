@@ -249,7 +249,7 @@ add_action('wp_ajax_nopriv_get_several_products', 'get_several_products');  // u
 
 function get_several_products(){
     $ids = $_POST['ids'];
-    $ids = explode(',', $ids);    
+    $ids = explode(',', $ids);
     $products = [];
         
     while (list($key, $value) = each ($ids)) {
@@ -264,6 +264,66 @@ function get_several_products(){
         array_push($products, $result);
     }
     echo json_encode($products);    
+    wp_die();
+}
+
+/*
+function get_several_products($req){
+    //$ids = $_POST['ids'];
+    $ids = urldecode($req->get_param('ids'));
+    $ids = explode(',', $ids);    
+    $products = [];
+        
+    while (list($key, $value) = each ($ids)) {
+        $id = clear($ids[$key]);
+        $product = wc_get_product($id);
+
+        $result["ID"] =                 $id;
+        $result["name"] =               $product->get_title();
+        $result["price"] =              $product->get_price();
+        $result["thumbnail"] =          get_the_post_thumbnail_url($id, 'shop_catalog');
+
+        array_push($products, $result);
+    }
+    //echo json_encode($products);    
+    //wp_die();
+    return rest_ensure_response($products);
+}
+
+add_action( 'rest_api_init', function () {
+    register_rest_route( 'api/v1', '/severalproducts/(?P<ids>\S+)', array(
+        'methods' => 'GET',
+        'callback' => 'get_several_products',
+    ));
+});
+*/
+
+// courier payment
+add_action('wp_ajax_courier_form_handler', 'courier_form_handler');         // authorised users
+add_action('wp_ajax_nopriv_courier_form_handler', 'courier_form_handler');  // unauthorised users
+
+function courier_form_handler(){
+    $name = clear($_POST['name']);
+    $phone = clear($_POST['phone']);
+    $email = clear($_POST['email']);
+    $address = clear($_POST['address']);
+    //$products = clear($_POST['products']);
+    $price = clear($_POST['price']);
+    $user_message = clear($_POST['message']);
+    
+    $message = 'Заказ с оплатой курьеру: \n';
+    $message .= $name . '\n';
+    $message .= $phone . '\n';
+    $message .= $email . '\n';
+    $message .= $address . '\n';
+    $message .= $user_message . '\n';
+    $message .= 'Товары: \n';
+    $message .= 'Сумма заказа: ' . $price . 'руб.';
+
+
+    $admin_email = get_option('admin_email');
+    wp_mail($admin_email, 'Заказ с оплатой курьеру', $message);
+    echo 'Спасибо за заказ. Наш менеджер свяжется с Вами в самое ближайшее время';
     wp_die();
 }
 
