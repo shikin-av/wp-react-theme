@@ -395,3 +395,11 @@ form textarea{
     margin-top: 10%;
     width: 70%;
 }
+.buy_btn:disabled{
+    background: #bbc;
+    border-color: #bbc;
+    cursor: auto;
+}
+input[type=radio] {
+    width: auto;
+}

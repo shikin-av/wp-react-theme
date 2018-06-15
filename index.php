@@ -13,6 +13,7 @@
         this.menu = null;
         this.promotions = null;
         this.logoUrl = null;
+        this.yandexMoneyNumber = null;
     }
     var global = new Global();
 
@@ -48,6 +49,10 @@
         // Logo (wp customizer)
         $logo_url = get_theme_mod('logoUrl', '');
         echo "global.logoUrl = '" . $logo_url . "';\n";
+
+        // Yandex Money Number (wp customizer)
+        $yandex_money_number = get_theme_mod('yandexMoneyNumber', '410015769150363');
+        echo "global.yandexMoneyNumber = '" . $yandex_money_number . "';\n";
 
     ?>
 </script>

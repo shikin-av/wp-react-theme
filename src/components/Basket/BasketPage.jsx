@@ -68,6 +68,7 @@ class BasketPage extends React.Component {
                             className="buy_btn mid_btn"
                             onClick={() => {
                                 this.setState({ paymentMethod: 'yandex' })
+                                jQuery('.product_buy_div .buy_btn').attr('disabled','disabled')
                             }}
                         >Онлайн оплата</button>
                         <br/>
@@ -75,6 +76,7 @@ class BasketPage extends React.Component {
                             className="buy_btn mid_btn"
                             onClick={() => {
                                 this.setState({ paymentMethod: 'courier' })
+                                jQuery('.product_buy_div .buy_btn').attr('disabled','disabled')
                             }}
                         >Оплата наличными<br/> курьеру</button>
                     </div>

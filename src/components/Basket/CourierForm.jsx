@@ -35,7 +35,6 @@ export default class CourierForm extends React.Component {
         e.preventDefault()
         
         let products = this.props.products
-        
         for(let i in products){
             delete products[i]['ID']
             delete products[i]['thumbnail']

@@ -187,19 +187,16 @@ add_action('customize_register', function($customizer){
         )
     );
 
-    // test text TODO DELETE
-    /*$customizer->add_setting(
-        'example_textbox',
-        array('default' => 'сайт Ями')
-    );
+    // yandex money number
+    $customizer->add_setting('yandexMoneyNumber');
     $customizer->add_control(
-        'example_textbox',
+        'yandexMoneyNumber',
         array(
-            'label' => 'Настройка текста',
+            'label' => 'Номер кошелька Яндекс Денег',
             'section' => 'section_yami',
             'type' => 'text',
         )
-    );*/
+    );
 
     $customizer->add_setting('logoUrl');
     $customizer->add_control(
@@ -292,7 +289,7 @@ function courier_form_handler(){
         }
         $message_products .= $product['name'];
         $message_products .= '(' . $product['price'] . 'р.)';
-        $message_products .= ' ' . $product['count'] . ' штук\n';
+        $message_products .= ' ' . $product['count'] . ' шт.\n';
     }
         
     $message = 'Заказ с оплатой курьеру: \n';
