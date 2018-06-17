@@ -10,7 +10,7 @@ const Header = () => (
     <div>
         <div id='header'>
             <div className="container">
-                <div className='w30 col-md-4'>
+                <div className='w30 col-sm-4'>
                     <p id='head_block_l'>
                         <a id='headTel' href='83412232238'>232-238</a><br/>
                         <Link to='/callme'>
@@ -19,10 +19,10 @@ const Header = () => (
                         <br/><br/>
                     </p>
                 </div>
-                <div className='w30 col-md-4'>
+                <div className='w30 col-sm-4'>
                     <Logo />
                 </div>
-                <div className='w30 col-md-4'>
+                <div className='w30 col-sm-4'>
                     <p id='head_block_r'>
                         <Basket key={Math.random()} />
                         <br/>
@@ -37,7 +37,7 @@ const Header = () => (
                 </div>
             </div>
         </div>
-        <MainMenu />
+        <MainMenu id='main-menu' />
     </div>
 )
 

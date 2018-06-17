@@ -51,13 +51,12 @@ export default class Carousel extends React.Component {
                     {
                         this.state.slides.map(slide => {
                             let content = jQuery.parseHTML(slide.post_content)
-                            //console.log('content: ', content)
                             return (
-                            <div key={slide.ID} className={'slide' + slide.ID}>
-                                <Link to={slide.urlTarget}>
+                            <Link to={slide.urlTarget} key={slide.ID}>
+                            <div className={'slide' + slide.ID} 
+                                style={{backgroundImage: `url(${slide.img})`, backgroundSize: 'cover'}}>
                                     <img 
-                                        src={slide.img} 
-                                        alt=""
+                                        src={slide.img}
                                     />
                                     <div className='carousel_text'>
                                         <div className='carousel_text_block' ref={(dom) => {
@@ -71,8 +70,9 @@ export default class Carousel extends React.Component {
                                             
                                         </div>
                                     </div>
-                                </Link>
+                                
                             </div>
+                            </Link>
                         )
                         })
                     }

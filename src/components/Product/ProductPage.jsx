@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Buy from './Buy.jsx'
 import { fetchProductById as fetchProductByIdApi } from '../../api'
 import { getBasket } from '../../selectors'
+import Preloader from '../Preloader/Preloader.jsx'
 
 class ProductPage extends React.Component {
     constructor(props){
@@ -99,7 +100,9 @@ class ProductPage extends React.Component {
                 </div>
             )
         }else{
-            return null
+            return (
+                <Preloader />
+            )
         }
     }
 }

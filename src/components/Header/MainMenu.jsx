@@ -33,7 +33,7 @@ export default class MainMenu extends React.Component {
 
     render(){
         return (
-            <nav id='main-menu' className='navbar navbar-expand-lg navbar-light bg-light'>
+            <nav id={this.props.id} className='navbar navbar-expand-lg navbar-light bg-light'>
                 <button 
                     className='navbar-toggler' 
                     type='button' 

@@ -8,6 +8,7 @@ import BasketItem from './BasketItem.jsx'
 import Basket from './Basket.jsx'
 import YandexForm from './YandexForm.jsx'
 import CourierForm from './CourierForm.jsx'
+import Preloader from '../Preloader/Preloader.jsx'
 
 class BasketPage extends React.Component {
     constructor(props){
@@ -153,18 +154,7 @@ class BasketPage extends React.Component {
                 )
             }else{
                 return (
-                    <div className='container'>
-                    <div className='row'>
-                            <div className='col-md-4'></div>
-                            <div className='col-md-4'>
-                                <center>
-                                    <br/>
-                                    <br/>
-                                    <p className='message'>Информация о товарах загружается</p>
-                                </center>
-                            </div>
-                        </div>
-                    </div>
+                    <Preloader />
                 )
             }
         }else{

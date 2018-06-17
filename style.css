@@ -35,7 +35,7 @@ img#logo {
 .slick-slide{
     max-height: 600px;
 }
-#main-menu {
+#main-menu, #footer-menu {
     background-color: #e9ecefba!important;
     box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.2);
@@ -157,7 +157,7 @@ img#logo {
     width: 100%;
     /*bottom: 0px;*/
 }
-#footer #main-menu {
+#footer-menu {
     background-color: #6c757d1c !important;
     box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.42);
     -webkit-box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.42);
@@ -191,6 +191,7 @@ p#head_block_r {
     margin-bottom: 12%;
     text-align:center;
     color: white;
+    text-shadow: 1px 1px 2px black, 0 0 1em lightgrey;
 }
 .carousel_text h2{
     font-weight: bold;
@@ -203,6 +204,9 @@ p#head_block_r {
     color: white;
 }
 .slick-slide a{
+    text-decoration: none !important;
+}
+.slick-track a{
     text-decoration: none !important;
 }
 h1, h2 {
@@ -295,15 +299,12 @@ img.basket_thumbnail {
 #subcategoryNav{
     margin: 0 auto;
 }
-@media (max-width: 640px){
-    #head_block_l{
-        text-align: center;
-    }
-    p#head_block_r{
-        text-align: center;
+@media (max-width: 1024px){
+    .carousel_text{
+        margin-bottom: 5%;
     }
 }
-@media (max-width: 768px){
+@media (max-width: 812px){
     .product_price{
         width: 100%;
         text-align: center;
@@ -312,7 +313,59 @@ img.basket_thumbnail {
         width: 100%;
         text-align: center;
     }
+    #headTel {
+        font-size: 3.2em !important;
+    }
+    #main-menu .navbar-toggler, #footer-menu .navbar-toggler{
+        color: white;
+        font-weight: bold;
+        font-size: 1.6em;
+    }    
+    #main-menu{
+        background-image: none;
+        background: #a9a29c !important;
+    }
+    #footer-menu{
+        display: none;
+    }
+    .thumbnail {
+        float: none !important;
+    }
+    .product_buy_div .buy_btn {
+        margin-bottom: 5px;
+    }
 }
+@media (max-width: 736px) and (min-width: 568px){
+    #headTel {
+        font-size: 2.2em !important;
+    }
+    a#job_clock {
+        font-size: 0.8em !important;
+    }
+    .big_text {
+        font-size: 1.0em !important;
+    }
+}
+@media (max-width: 640px){
+    #head_block_l{
+        text-align: center;
+    }
+    p#head_block_r{
+        text-align: center;
+    }
+    .carousel_text {
+        margin-bottom: 0%;
+    }
+}
+@media (max-width: 450px){
+    .slick-slide img {
+        display: none !important;
+    }
+    .carousel_text {
+        margin-top: 0%;
+    }
+}
+
 /* new logo design */
 img#logo {
     max-height: 200px;
@@ -347,12 +400,12 @@ p#head_block_r {
     margin-top: 5px;
     margin-bottom: 3%;
 }
-#main-menu{
+#main-menu, #footer-menu{
     background-image: url(http://sushi.local/wp-content/uploads/2018/05/menu-back6.png);
     background-size: cover;
     background-position: center center;
 }
-#main-menu .nav-link{
+#main-menu .nav-link, #footer-menu .nav-link{
     color: white !important;
     /*text-transform: uppercase;*/
     font-weight: bold;
@@ -361,7 +414,7 @@ p#head_block_r {
 #subcategoryNav .nav-link{
     font-size: 1.1em;
 }
-#main-menu a.nav-link:hover{
+#main-menu a.nav-link:hover, #footer-menu a.nav-link:hover{
     background-color: rgba(255,255,255,.2);
 }
 form input{
@@ -402,4 +455,14 @@ form textarea{
 }
 input[type=radio] {
     width: auto;
+}
+#basket_list a{
+    color: black;
+}
+#main-menu .nav-link, #footer-menu .nav-link{
+    text-shadow: 1px 1px 2px black, 0 0 1em lightgrey;
+}
+.buy_btn{
+    text-shadow: 1px 1px 2px #00000094;
+    box-shadow: 1px 1px 2px #0000003d;
 }

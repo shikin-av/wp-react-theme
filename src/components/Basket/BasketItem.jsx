@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {Link} from 'react-router-dom'
 
 import Buy from '../Product/Buy.jsx'
 
@@ -13,10 +14,14 @@ class BasketItem extends React.Component {
         return (
             <tr>
                 <td>
-                    <img src={product.thumbnail} className='basket_thumbnail' />
+                    <Link to={'/product/' + product.ID}>
+                        <img src={product.thumbnail} className='basket_thumbnail' />
+                    </Link>
                 </td>
                 <td>
-                    <span className='basket_name'>{product.name}</span>
+                    <Link to={'/product/' + product.ID}>
+                        <span className='basket_name'>{product.name}</span>
+                    </Link>
                 </td>
                 <td>
                     <span className='basket_list_price'>

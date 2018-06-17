@@ -4,7 +4,7 @@ import MainMenu from './Header/MainMenu.jsx'
 
 const Footer = () => (
     <div id='footer'>
-        <MainMenu />
+        <MainMenu id='footer-menu' />
     </div>
 )
 

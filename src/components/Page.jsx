@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { fetchPageContent as fetchPageContentApi } from '../api'
+import Preloader from './Preloader/Preloader.jsx'
 
 export default class Page extends React.Component {
     constructor(props){
@@ -77,7 +78,9 @@ export default class Page extends React.Component {
                 </div>
             )
         }else{
-            return(<div></div>)
+            return (
+                <Preloader />
+            )
         }
     }
 }

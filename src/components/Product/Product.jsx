@@ -15,7 +15,7 @@ class Product extends React.Component {
         const { product } = this.props
         const { hover } = this.state
         return (
-            <div className='col-sm-3 col-md-3 col-lg-3 product' >
+            <div className='col-sm-6 col-md-6 col-lg-3 product' >
                 <div className='product_inner'>
                     <div className='thumbnail wrapper'
                         onMouseEnter={() => 
@@ -31,18 +31,18 @@ class Product extends React.Component {
                     >   
                         <Link to={`/product/${product.ID}`}>
                             <img src={product.thumbnail} />
+                            <div className='description'
+                                style={{ opacity: hover ? '1' : '0' }}
+                            >
+                                <p className='description_content'>
+                                    <span className='short_description'>{product.short_description}</span>
+                                    <br/>
+                                    <span className='detail'>
+                                        <button className='buy_btn'>Подробнее</button>
+                                    </span>
+                                </p>
+                            </div>
                         </Link>
-                        <div className='description'
-                            style={{ opacity: hover ? '1' : '0' }}
-                        >
-                            <p className='description_content'>
-                                <span className='short_description'>{product.short_description}</span>
-                                <br/>
-                                <Link to={`/product/${product.ID}`} className='detail'>
-                                    <button className='buy_btn'>Подробнее</button>
-                                </Link>
-                            </p>
-                        </div>
                     </div>
                     <div className='product_name'>
                         {product.name}

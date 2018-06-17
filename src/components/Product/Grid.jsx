@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Product from './Product.jsx'
 import { fetchProductsByCategory } from '../../actions'
 import { getProductsOnCurrentPage, getBasket } from '../../selectors'
+import Preloader from '../Preloader/Preloader.jsx'
 
 class Grid extends React.Component {
     constructor(props){
@@ -57,7 +58,9 @@ class Grid extends React.Component {
                 </div>
             )
         }else{
-            return null
+            return (
+                <Preloader />
+            )
         }
     }
 }
