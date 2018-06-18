@@ -60,45 +60,53 @@ class ProductPage extends React.Component {
     render(){
         const { product } = this.state
         if(product){
-            let content = jQuery.parseHTML(product.content)
-            return (
-                <div className='container'>
-                    <div className='row title'>
-                        <h1>{product.name}</h1>
+            if(product == 'error'){
+                return (
+                    <div className="message">
+                        Данный товар не выложен на сайт.<br/> Его наличие Вы можете узнать, позвонив нам.
                     </div>
-                    <div className='row product_info'>
-                        <div className='images col-md-6'>
-                            {
-                                product.images ? (product.images.map((url, index) =>
-                                    <img src={url} key={index} />
-                                )) : null
-                            }
+                )
+            }else{
+                let content = jQuery.parseHTML(product.content)
+                return (
+                    <div className='container'>
+                        <div className='row title'>
+                            <h1>{product.name}</h1>
                         </div>
-                        <div className='col-md-6'>
-                            <div className="product_price">
-                                <b>
-                                    <span className="price">{product.price}</span>
-                                    <span>р</span>
-                                </b>
-                                <Buy id={product.ID} count={this.getCountOnBasket()} price={product.price} />
+                        <div className='row product_info'>
+                            <div className='images col-md-6'>
+                                {
+                                    product.images ? (product.images.map((url, index) =>
+                                        <img src={url} key={index} />
+                                    )) : null
+                                }
                             </div>
-                            <div className="content" ref={(dom) => {
-                                jQuery(dom).html('')
-                                if(content){
-                                    for(let el of content){
-                                        if(el.nodeName == '#text'){
-                                            jQuery(dom).append(`<span>${el.data}</span><br>`)
-                                        }else{
-                                            jQuery(dom).append(`${el.outerHTML}`)
+                            <div className='col-md-6'>
+                                <div className="product_price">
+                                    <b>
+                                        <span className="price">{product.price}</span>
+                                        <span>р</span>
+                                    </b>
+                                    <Buy id={product.ID} count={this.getCountOnBasket()} price={product.price} />
+                                </div>
+                                <div className="content" ref={(dom) => {
+                                    jQuery(dom).html('')
+                                    if(content){
+                                        for(let el of content){
+                                            if(el.nodeName == '#text'){
+                                                jQuery(dom).append(`<span>${el.data}</span><br>`)
+                                            }else{
+                                                jQuery(dom).append(`${el.outerHTML}`)
+                                            }
                                         }
                                     }
-                                }
-                            }}>
+                                }}>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            )
+                )
+            }
         }else{
             return (
                 <Preloader />

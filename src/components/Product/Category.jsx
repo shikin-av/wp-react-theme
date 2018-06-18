@@ -72,9 +72,12 @@ class Category extends React.Component {
         const { category, subcategory } = this.props.match.params
         return (
             <div>
-                <SubCategories parentCategory={category} />
-                <Grid  category={subcategory || category} categoryName={
-                    subcategory && this.state.subcategoryName ? `${this.state.categoryName} ${this.state.subcategoryName}` : `${this.state.categoryName}`
+                <Grid  category={subcategory || category} 
+                    parentCategory={category}
+                    categoryName={
+                    subcategory && this.state.subcategoryName 
+                    ? `${this.state.categoryName} ${this.state.subcategoryName}` 
+                    : `${this.state.categoryName}`
                 }/>
             </div>
         )

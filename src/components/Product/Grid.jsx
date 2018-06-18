@@ -5,6 +5,7 @@ import Product from './Product.jsx'
 import { fetchProductsByCategory } from '../../actions'
 import { getProductsOnCurrentPage, getBasket } from '../../selectors'
 import Preloader from '../Preloader/Preloader.jsx'
+import SubCategories from './SubCategory.jsx'
 
 class Grid extends React.Component {
     constructor(props){
@@ -15,10 +16,10 @@ class Grid extends React.Component {
         }
     }
     
-    componentDidMount(){
+    /*componentDidMount(){
         const { category } = this.props 
         this.props.fetchProductsByCategory(category)
-    }
+    }*/
     componentDidUpdate(){
         const { category } = this.props
         if(category !== this.state.prevCategory){
@@ -34,33 +35,49 @@ class Grid extends React.Component {
             category,
             products,
             categoryName,
-            basket
+            basket,
+            parentCategory
         } = this.props
-        if(products.length){
+        console.log('GRID products/length ', products.length)
+        if(products == 'empty_result'){
             return(
                 <div className='container'>
                     <div className='row title'>
                         <h2>{categoryName}</h2>
                     </div>
-                    <div className='row grid'>
-                        {
-                            products.map((product, index) => {
-                                if(basket[product.ID]){
-                                    const basketProduct = basket[product.ID]
-                                    product.count = basketProduct.count
-                                }else{
-                                    product.count = 0
-                                }
-                                return <Product product={product} key={product.ID} />
-                            })
-                        }
+                    <div className='message'>
+                        Данные товары не выставлены на сайт.<br/> Их наличие Вы можете узнать позвонив нам
                     </div>
                 </div>
             )
         }else{
-            return (
-                <Preloader />
-            )
+            if(products.length){
+                return(
+                    <div className='container'>
+                        <SubCategories parentCategory={parentCategory} />
+                        <div className='row title'>
+                            <h2>{categoryName}</h2>
+                        </div>
+                        <div className='row grid'>
+                            {
+                                products.map((product, index) => {
+                                    if(basket[product.ID]){
+                                        const basketProduct = basket[product.ID]
+                                        product.count = basketProduct.count
+                                    }else{
+                                        product.count = 0
+                                    }
+                                    return <Product product={product} key={product.ID} />
+                                })
+                            }
+                        </div>
+                    </div>
+                )
+            }else{
+                return (
+                    <Preloader />
+                )
+            }
         }
     }
 }

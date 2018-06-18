@@ -152,22 +152,25 @@ function get_product_by_id($req){
     $id = urldecode($req->get_param('id'));
     $id = clear($id);
     $product = wc_get_product( $id );
-    
-    $result["ID"] =                 $id;
-    $result["name"] =               $product->get_title();
-    $result["price"] =              $product->get_price();
-    $result["short_description"] =  $product->get_short_description();
-    $result["content"] =            $product->get_description();
-    $result["thumbnail"] =          get_the_post_thumbnail_url($id, 'shop_catalog');
+    if($product){
+        $result["ID"] =                 $id;
+        $result["name"] =               $product->get_title();
+        $result["price"] =              $product->get_price();
+        $result["short_description"] =  $product->get_short_description();
+        $result["content"] =            $product->get_description();
+        $result["thumbnail"] =          get_the_post_thumbnail_url($id, 'shop_catalog');
 
-    $attachment_ids = $product->get_gallery_attachment_ids();
-    $i = 0;
-    foreach( $attachment_ids as $attachment_id ) {
-        $result["images"][$i] = wp_get_attachment_url($attachment_id);
-        $i++;
+        $attachment_ids = $product->get_gallery_attachment_ids();
+        $i = 0;
+        foreach( $attachment_ids as $attachment_id ) {
+            $result["images"][$i] = wp_get_attachment_url($attachment_id);
+            $i++;
+        }
+
+        return rest_ensure_response($result);
+    }else{
+        return 'error';
     }
-
-    return rest_ensure_response($result);
 }
 add_action( 'rest_api_init', function () {
     register_rest_route( 'api/v1', '/product/(?P<id>\d+)', array(

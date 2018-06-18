@@ -53,7 +53,7 @@ export default class CallMePage extends React.Component {
                     <div className='col-md-6'>
                         <center>
                             { 
-                                this.state.resMessage ? <p className='resMessage'>{this.state.resMessage}</p> 
+                                this.state.resMessage ? <p className='resMessage message'>{this.state.resMessage}</p> 
                                 :
                                 <form
                                     className='callme_form'

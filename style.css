@@ -250,6 +250,7 @@ p.description_content{
 .short_description {
     display: block;
     min-height: 35%;
+    text-shadow: 1px 1px 2px black, 0 0 1em lightgrey;
 }
 p.description_content {
     padding: 10px;
@@ -434,6 +435,10 @@ form textarea{
     background: white;
     padding: 5%;
     border: 3px solid #d24a43;
+
+    margin: 5% auto;
+    width: 90%;
+    max-width: 500px;
 }
 #order_form button{
     margin-top: 10px;
