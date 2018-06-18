@@ -21,12 +21,10 @@ export default class CourierForm extends React.Component {
 
     componentDidMount(){
         const { products, price } = this.props
-        console.log('КУРЬЕР продукты: ', products)
     }
 
     componentDidUpdate(){
         const { products } = this.props
-        console.log('КУРЬЕР продукты: ', products)
     }
 
     handleSubmit(e){
@@ -44,8 +42,6 @@ export default class CourierForm extends React.Component {
             productsArr.push(JSON.stringify(products[i]))
         }
         const productsStr = productsArr.join(',')
-        console.log('productsArr ', productsArr)
-        console.log('productsStr ', productsStr)
 
         jQuery($ => {
             $.ajax({
@@ -65,7 +61,7 @@ export default class CourierForm extends React.Component {
                     this.setState({ resMessage: data })
                 },
                 error: (err) => {
-                    console.log('AJAX err: ', err)
+                    console.log('ERROR: ', err)
                 }
             })
         })
@@ -73,7 +69,6 @@ export default class CourierForm extends React.Component {
 
     handleNameChange(e){
         this.setState({ name: e.target.value })
-        console.log(this.state.products)
     }
 
     handlePhoneChange(e){

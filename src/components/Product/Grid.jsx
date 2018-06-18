@@ -16,10 +16,6 @@ class Grid extends React.Component {
         }
     }
     
-    /*componentDidMount(){
-        const { category } = this.props 
-        this.props.fetchProductsByCategory(category)
-    }*/
     componentDidUpdate(){
         const { category } = this.props
         if(category !== this.state.prevCategory){
@@ -38,7 +34,7 @@ class Grid extends React.Component {
             basket,
             parentCategory
         } = this.props
-        console.log('GRID products/length ', products.length)
+        
         if(products == 'empty_result'){
             return(
                 <div className='container'>
@@ -54,7 +50,6 @@ class Grid extends React.Component {
             if(products.length){
                 return(
                     <div className='container'>
-                        <SubCategories parentCategory={parentCategory} />
                         <div className='row title'>
                             <h2>{categoryName}</h2>
                         </div>

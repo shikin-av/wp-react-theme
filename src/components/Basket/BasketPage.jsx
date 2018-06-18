@@ -93,7 +93,6 @@ class BasketPage extends React.Component {
                 ids.push(product.ID)
             }
             ids = ids.join(',')
-            console.log('ids ', ids)
             jQuery($ => {
                 $.ajax({
                     type: 'POST',
@@ -109,10 +108,9 @@ class BasketPage extends React.Component {
                             info[product.ID] = product
                         }
                         this.setState({ productsInfo: info })
-                        console.log('AJAX PROD INFO ', this.state.productsInfo)
                     },
                     error: (err) => {
-                        console.log('AJAX err: ', err)
+                        console.log('ERROR: ', err)
                     }
                 })
             })

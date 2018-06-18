@@ -63,20 +63,3 @@ export default class MainMenu extends React.Component {
         )
     }
 }
-/*
-<header>
-    <nav>
-        <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/bloglist'>Blog List</Link></li>
-        </ul>
-    </nav>
-</header>
-
-<li className='nav-item active'>
-    <Link className='nav-link' to='/'>Home</Link>
-</li>
-<li className='nav-item'>
-    <Link className='nav-link' to='/bloglist'>Blog List</Link>
-</li>
-*/

@@ -127,4 +127,3 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage)
-//TODO если начинать просмотр сайта с этой страницы => товаров ещё нет в state, тоесть на grid-странице не отображается количество

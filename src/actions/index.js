@@ -6,7 +6,6 @@ import {
 
 export const fetchProductsByCategory = (category) => async dispatch => {
     dispatch({ type: types.FETCH_PRODUCTS_BY_CATEGORY_START })
-    console.log('fetch START')
     try {
         const products = await fetchProductsByCategoryApi(category)
         if(products instanceof Array && products.length){
@@ -14,13 +13,11 @@ export const fetchProductsByCategory = (category) => async dispatch => {
                 type: types.FETCH_PRODUCTS_BY_CATEGORY_SUCCESS,
                 payload: products
             })
-            console.log('fetch SUCCESS')
         }else{
             dispatch({ 
                 type: types.FETCH_PRODUCTS_BY_CATEGORY_EMPTY_RESULT,
                 payload: 'empty_result'
             })
-            console.log('fetch EMPTY')
         }
     } catch(err) {
         dispatch({ 

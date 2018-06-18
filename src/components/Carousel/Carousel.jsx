@@ -52,28 +52,26 @@ export default class Carousel extends React.Component {
                         this.state.slides.map(slide => {
                             let content = jQuery.parseHTML(slide.post_content)
                             return (
-                            <Link to={slide.urlTarget} key={slide.ID}>
-                            <div className={'slide' + slide.ID} 
-                                style={{backgroundImage: `url(${slide.img})`, backgroundSize: 'cover'}}>
-                                    <img 
-                                        src={slide.img}
-                                    />
-                                    <div className='carousel_text'>
-                                        <div className='carousel_text_block' ref={(dom) => {
-                                            jQuery(dom).html('')
-                                            for(let el of content){
-                                                if(el.nodeName != '#text'){
-                                                    jQuery(dom).append(el.outerHTML)
+                                <Link to={slide.urlTarget} key={slide.ID}>
+                                <div className={'slide' + slide.ID} 
+                                    style={{backgroundImage: `url(${slide.img})`, backgroundSize: 'cover'}}>
+                                        <img 
+                                            src={slide.img}
+                                        />
+                                        <div className='carousel_text'>
+                                            <div className='carousel_text_block' ref={(dom) => {
+                                                jQuery(dom).html('')
+                                                for(let el of content){
+                                                    if(el.nodeName != '#text'){
+                                                        jQuery(dom).append(el.outerHTML)
+                                                    }
                                                 }
-                                            }
-                                        }}>
-                                            
+                                            }}>
+                                            </div>
                                         </div>
-                                    </div>
-                                
-                            </div>
-                            </Link>
-                        )
+                                </div>
+                                </Link>
+                            )
                         })
                     }
                 </Slider>

@@ -33,15 +33,12 @@
         $promotions = get_posts($promotions);     // query_posts() get_posts()
 
         foreach($promotions as $key => $item){
-            $img_id = get_post_meta($item->ID, 'img', true);            
-            $img_url = wp_get_attachment_url($img_id);            
+            $img_id = get_post_meta($item->ID, 'img', true);
+            $img_url = wp_get_attachment_url($img_id);
             $promotions[$key]->img = $img_url;
-            //echo "console.log('" . $promotions[$key]->img . "');\n";
 
             $url_target = get_post_meta($item->ID, 'urlTarget', true);
             $promotions[$key]->urlTarget = $url_target;
-            //echo "console.log('" . $promotions[$key]->urlTarget . "');\n";
-
         }
         $promotions_json =  json_encode($promotions);
         echo "global.promotions = " . $promotions_json . ";\n";

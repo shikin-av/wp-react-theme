@@ -28,7 +28,7 @@ export default class CallMePage extends React.Component {
                     this.setState({ resMessage: data })
                 },
                 error: (err) => {
-                    console.log('AJAX err: ', err)
+                    console.log('ERROR: ', err)
                 }
             })
         })
@@ -66,7 +66,6 @@ export default class CallMePage extends React.Component {
                                         placeholder='Ваше имя'
                                         required
                                         onChange={this.handleNameChange}
-
                                     />
                                     <br/>
                                     <input

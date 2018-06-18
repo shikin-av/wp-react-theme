@@ -132,11 +132,6 @@ function get_page_content_by_slug($req){
     $page_slug = clear($page_slug);
     $page_data = get_page_by_path($page_slug);
     
-    /*$page_content = [];
-    $page_content["id"] = $page_data->ID;
-    $page_content["title"] = $page_data->post_title;
-    $page_content["content"] = $page_data->post_content;*/
-
     return rest_ensure_response($page_data);
 }
 add_action( 'rest_api_init', function () {
