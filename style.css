@@ -402,7 +402,7 @@ p#head_block_r {
     margin-bottom: 3%;
 }
 #main-menu, #footer-menu{
-    background-image: url(http://sushi.local/wp-content/uploads/2018/05/menu-back6.png);
+    background-image: url(/wp-content/uploads/2018/05/menu-back6.png);
     background-size: cover;
     background-position: center center;
 }

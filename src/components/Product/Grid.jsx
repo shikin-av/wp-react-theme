@@ -16,6 +16,11 @@ class Grid extends React.Component {
         }
     }
     
+    componentDidMount(){
+        const { category } = this.props 
+        this.props.fetchProductsByCategory(category)
+    }
+
     componentDidUpdate(){
         const { category } = this.props
         if(category !== this.state.prevCategory){
