@@ -1,5 +1,6 @@
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
+import device from 'current-device'
 
 import Home from './Home.jsx'
 import Blog from './Blog/Blog.jsx'
@@ -15,8 +16,11 @@ class Main extends React.Component {
     }
 
     componentWillUpdate(){
-        // scroll to top on switch route
-        document.getElementById('header').scrollIntoView(true)
+        if(device.mobile()){
+            document.getElementById('main-menu').scrollIntoView(true)
+        }else{
+            document.getElementById('header').scrollIntoView(true)
+        }
     }
 
     render(){

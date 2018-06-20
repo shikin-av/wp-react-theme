@@ -51,7 +51,12 @@ class Product extends React.Component {
                         <div className='product_price'>
                             <span className='price'>{product.price}</span><span>р</span>
                         </div>
-                        <Buy id={product.ID} count={product.count} price={product.price} />
+                        <Buy 
+                            id={product.ID}
+                            count={product.count}
+                            price={product.price}
+                            basketBtn={true}
+                        />
                     </div>
                 </div>
             </div>

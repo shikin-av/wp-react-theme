@@ -471,3 +471,8 @@ input[type=radio] {
     text-shadow: 1px 1px 2px #00000094;
     box-shadow: 1px 1px 2px #0000003d;
 }
+a.buy_btn.product_to_basket_btn {
+    font-size: 1.5em;
+    float: right;
+    margin-top: -6px;
+}

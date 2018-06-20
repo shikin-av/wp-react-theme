@@ -8,7 +8,7 @@ export default class MainMenu extends React.Component {
         super(props)
         this.state = {
             menu: null,
-            current: null
+            current: null,
         }
     }
 
@@ -31,6 +31,11 @@ export default class MainMenu extends React.Component {
         }
     }
 
+    linkClickHandler(){
+        jQuery('.collapse').removeClass('show')
+        jQuery('.collapse').addClass('hide')
+    }
+
     render(){
         return (
             <nav id={this.props.id} className='navbar navbar-expand-lg navbar-light bg-light'>
@@ -50,10 +55,14 @@ export default class MainMenu extends React.Component {
                     {
                         this.state.menu.map(item => (
                             <li 
-                                className='nav-item' 
+                                className='nav-item'
                                 key={item.ID}
                             >
-                                <Link className='nav-link' to={item.url}>{item.title}</Link>
+                                <Link 
+                                    className='nav-link' 
+                                    to={item.url} 
+                                    onClick={e => this.linkClickHandler()}
+                                >{item.title}</Link>
                             </li>
                         ))
                     }

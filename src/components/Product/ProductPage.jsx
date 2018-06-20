@@ -87,7 +87,12 @@ class ProductPage extends React.Component {
                                         <span className="price">{product.price}</span>
                                         <span>р</span>
                                     </b>
-                                    <Buy id={product.ID} count={this.getCountOnBasket()} price={product.price} />
+                                    <Buy 
+                                        id={product.ID}
+                                        count={this.getCountOnBasket()}
+                                        price={product.price}
+                                        basketBtn={true}
+                                    />
                                 </div>
                                 <div className="content" ref={(dom) => {
                                     jQuery(dom).html('')

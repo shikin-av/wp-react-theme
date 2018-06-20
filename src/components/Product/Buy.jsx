@@ -1,5 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
+import device from 'current-device'
+import {Link} from 'react-router-dom'
 
 import { changeProductCountToBasket } from '../../actions'
 
@@ -50,11 +52,19 @@ class Buy extends React.Component {
     }
 
     renderCounter(){
+        const { count } = this.state
+        const needBasketBtn = count && this.props.basketBtn && device.mobile()
         return(
-            <div className='product_buy_div'>
+            <div className='product_buy_div' style={needBasketBtn ? {paddingLeft: '38px'} : null}>
                 <button className='buy_btn' onClick={this.decrement}>-</button>
-                <span className='count'>{this.state.count}</span>
+                <span className='count'>{count}</span>
                 <button className='buy_btn' onClick={this.increment}>+</button>
+                { needBasketBtn 
+                    ? <Link to='/basket' className='buy_btn product_to_basket_btn'>
+                        &nbsp;<i className="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;
+                    </Link> 
+                    : null 
+                }
             </div>
         )
     }
