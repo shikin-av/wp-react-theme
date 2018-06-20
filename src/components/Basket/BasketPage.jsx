@@ -46,7 +46,9 @@ class BasketPage extends React.Component {
                 
         const productsToForm = {}
         for(let i in productsInfo){
-            productsToForm[i] = Object.assign(products[i], productsInfo[i])
+            if(products[i]){
+                productsToForm[i] = Object.assign(products[i], productsInfo[i])
+            }
         }
 
         switch(paymentMethod){
@@ -68,18 +70,18 @@ class BasketPage extends React.Component {
                         <button 
                             className="buy_btn mid_btn"
                             onClick={() => {
-                                this.setState({ paymentMethod: 'yandex' })
-                                jQuery('.product_buy_div .buy_btn').attr('disabled','disabled')
-                            }}
-                        >Онлайн оплата</button>
-                        <br/>
-                        <button 
-                            className="buy_btn mid_btn"
-                            onClick={() => {
                                 this.setState({ paymentMethod: 'courier' })
                                 jQuery('.product_buy_div .buy_btn').attr('disabled','disabled')
                             }}
                         >Оплата наличными<br/> курьеру</button>
+                        <br/>
+                        <button 
+                            className="buy_btn mid_btn"
+                            onClick={() => {
+                                this.setState({ paymentMethod: 'yandex' })
+                                jQuery('.product_buy_div .buy_btn').attr('disabled','disabled')
+                            }}
+                        >Онлайн оплата</button>
                     </div>
                 )
         }
