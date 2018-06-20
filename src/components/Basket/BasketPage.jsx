@@ -130,9 +130,9 @@ class BasketPage extends React.Component {
                             <strong className='price'>{ getPriceToBasket ? `Сумма: ${getPriceToBasket}р.` : null }</strong>
                         </div>
                         <div className='row'>
-                            <div className='images col-md-6'>
-                                <table id='basket_list'>
-                                    <tbody>
+                            <div className='basket_items col-md-7'>
+                                <div className='container' id='basket_list'>
+                                    
                                     {
                                         this.productList(products).map(product => (
                                             <BasketItem 
@@ -141,10 +141,10 @@ class BasketPage extends React.Component {
                                             />
                                         ))
                                     }
-                                    </tbody>
-                                </table>
+                                    
+                                </div>
                             </div>
-                            <div className='col-md-6'>
+                            <div className='col-md-5'>
                                 { this.showForms() }
                             </div>
                         </div>

@@ -12,29 +12,29 @@ class BasketItem extends React.Component {
     render(){
         const { product } = this.props
         return (
-            <tr>
-                <td>
+            <div className='row'>
+                <div className='col-md-3 col-6'>
                     <Link to={'/product/' + product.ID}>
                         <img src={product.thumbnail} className='basket_thumbnail' />
                     </Link>
-                </td>
-                <td>
+                </div>
+                <div className='col-md-4 col-6'>
                     <Link to={'/product/' + product.ID}>
-                        <span className='basket_name'>{product.name}</span>
+                        <p className='basket_name'>{product.name}</p>
                     </Link>
-                </td>
-                <td>
+                </div>
+                <div className='col-md-2 col-6'>
                     <span className='basket_list_price'>
                         <span className='price'>{product.price}</span>
                         р.
                     </span>
-                </td>
-                <td>
+                </div>
+                <div className='col-md-3 col-6'>
                     <div className='basket_buys'>
                         <Buy id={product.ID} count={product.count} price={product.price} />
                     </div>
-                </td>
-            </tr>
+                </div>
+            </div>
         )
     }
 

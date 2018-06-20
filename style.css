@@ -335,6 +335,13 @@ img.basket_thumbnail {
     .product_buy_div .buy_btn {
         margin-bottom: 5px;
     }
+    .basket_items .col-md-3{
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .basket_items .count{
+        padding: 7px;
+    }
 }
 @media (max-width: 736px) and (min-width: 568px){
     #headTel {
@@ -475,4 +482,27 @@ a.buy_btn.product_to_basket_btn {
     font-size: 1.5em;
     float: right;
     margin-top: -6px;
+}
+img.basket_thumbnail{
+    height: auto;
+    width: 100%;
+}
+.basket_items .row {
+    background: #d3d3d336;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /*border: 3px solid #d3d3d37d;*/
+    box-shadow: 1px 1px 2px #0000003d;
+}
+.basket_items .basket_name{
+    padding-top: 10px;
+}
+.basket_items .basket_list_price{
+    padding-top: 10px;
+}
+.basket_items .basket_buys{
+    padding-top: 7px;
+}
+.basket_name {
+    padding-left: 0px;
 }
