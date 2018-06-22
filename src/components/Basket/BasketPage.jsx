@@ -54,12 +54,30 @@ class BasketPage extends React.Component {
         switch(paymentMethod){
             case 'yandex':
                 return (
-                    <YandexForm price={getPriceToBasket} products={productsToForm} />
+                    <div  className='form'>
+                        <YandexForm price={getPriceToBasket} products={productsToForm} />
+                        <button 
+                            className="buy_btn mid_btn back"
+                            onClick={() => {
+                                this.setState({ paymentMethod: null })
+                                jQuery('.product_buy_div .buy_btn').removeAttr('disabled')
+                            }}
+                        >Назад</button>
+                    </div>
                 )
                 break
             case 'courier':
                 return (
-                    <CourierForm price={getPriceToBasket} products={productsToForm} />
+                    <div className='form'>
+                        <CourierForm price={getPriceToBasket} products={productsToForm} />
+                        <button 
+                            className="buy_btn mid_btn back"
+                            onClick={() => {
+                                this.setState({ paymentMethod: null })
+                                jQuery('.product_buy_div .buy_btn').removeAttr('disabled')
+                            }}
+                        >Назад</button>
+                    </div>
                 )
                 break
             default:
@@ -122,7 +140,7 @@ class BasketPage extends React.Component {
     render(){
         const { products, productsInfo } = this.state
         const { getPriceToBasket } = this.props
-        
+        console.log('productsInfo ', productsInfo)
         if(getPriceToBasket){
             if(productsInfo){
                 return (

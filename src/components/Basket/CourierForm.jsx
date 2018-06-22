@@ -120,13 +120,6 @@ export default class CourierForm extends React.Component {
                             onChange={this.handleAddressChange}
                         />
                         <br/>
-                        <input
-                            type='email'
-                            name='email'
-                            placeholder='Ваш email'
-                            onChange={this.handleEmailChange}
-                        />
-                        <br/>
                         <textarea 
                             rows='3'
                             name='message'

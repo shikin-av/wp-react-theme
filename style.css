@@ -505,4 +505,22 @@ img.basket_thumbnail{
 }
 .basket_name {
     padding-left: 0px;
+    font-weight: bold;
+}
+.basket_short_description{
+    
+}
+.form {
+    padding-left: 5%;
+    /*text-align: center;*/
+}
+#order_form {
+    /*text-align: center;*/
+    padding-left: 5%;
+}
+.back{
+    margin: 4px;
+    background: #82373e;
+    border-color: #82373e;
+    margin-top: 10px;
 }

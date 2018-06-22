@@ -21,6 +21,7 @@ class BasketItem extends React.Component {
                 <div className='col-md-4 col-6'>
                     <Link to={'/product/' + product.ID}>
                         <p className='basket_name'>{product.name}</p>
+                        <p className='basket_short_description'>{product.short_description}</p>
                     </Link>
                 </div>
                 <div className='col-md-2 col-6'>

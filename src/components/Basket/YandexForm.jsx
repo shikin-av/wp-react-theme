@@ -20,7 +20,6 @@ class YandexForm extends React.Component {
         return (
             <form id='yandexmoney_form' method='POST' action='https://money.yandex.ru/quickpay/confirm.xml'>
                 <br />
-                <br />
                 <input type='hidden' name='receiver' onChange={this.formHandler} value={yandexMoneyNumber} />
                 <input type='hidden' name='quickpay-form' onChange={this.formHandler} value='shop' />
                 <input type='hidden' name='sum' onChange={this.formHandler} value={price} data-type='number' />
@@ -39,7 +38,6 @@ class YandexForm extends React.Component {
                     })
                 } />
                 <input type='hidden' name='need-fio' onChange={this.formHandler} value='true' />
-                <input type='hidden' name='need-email' onChange={this.formHandler} value='false' />
                 <input type='hidden' name='need-phone' onChange={this.formHandler} value='true' />
                 <input type='hidden' name='need-address' onChange={this.formHandler} value='true' />
                 <label><input type='radio' name='paymentType' onChange={this.formHandler} value='AC' checked />Оплата Банковской картой</label><br />

@@ -255,6 +255,7 @@ function get_several_products(){
         $result["name"] =               $product->get_title();
         $result["price"] =              $product->get_price();
         $result["thumbnail"] =          get_the_post_thumbnail_url($id, 'shop_catalog');
+        $result["short_description"] =  $product->get_short_description();
 
         array_push($products, $result);
     }
@@ -270,7 +271,7 @@ add_action('wp_ajax_nopriv_courier_form_handler', 'courier_form_handler');  // u
 function courier_form_handler(){
     $name = clear($_POST['name']);
     $phone = clear($_POST['phone']);
-    $email = clear($_POST['email']);
+    //$email = clear($_POST['email']);
     $address = clear($_POST['address']);
     $data_products = clear($_POST['products']);
     $price = clear($_POST['price']);
@@ -293,7 +294,7 @@ function courier_form_handler(){
     $message = 'Заказ с оплатой курьеру: \n';
     $message .= $name . '\n';
     $message .= $phone . '\n';
-    $message .= $email . '\n';
+    //$message .= $email . '\n';
     $message .= $address . '\n\n';
     $message .= $user_message . '\n\n';
     $message .= 'Товары: \n';
